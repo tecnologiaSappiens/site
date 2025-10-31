@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Sappie Brand Colors - Purple/Pink Tech Theme */
+  --color-background: #1a1625;
+  --color-foreground: #ffffff;
+  --color-card: #221d30;
+  --color-card-foreground: #ffffff;
+  --color-popover: #221d30;
+  --color-popover-foreground: #ffffff;
+  
+  /* Primary: Purple Button Color */
+  --color-primary: #9d6dd9;
+  --color-primary-foreground: #ffffff;
+  
+  /* Secondary: Dark Purple Elements */
+  --color-secondary: #310062;
+  --color-secondary-foreground: #ffffff;
+  
+  /* Muted: Subtle grays */
+  --color-muted: #38334a;
+  --color-muted-foreground: #b3b3b3;
+  
+  /* Accent: Dark Purple Elements */
+  --color-accent: #310062;
+  --color-accent-foreground: #ffffff;
+  
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  
+  --color-border: #38334a;
+  --color-input: #2d2838;
+  --color-ring: #9d6dd9;
+  
+  /* Sidebar */
+  --color-sidebar-background: #1c1729;
+  --color-sidebar-foreground: #ffffff;
+  --color-sidebar-primary: #9d6dd9;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: #26212f;
+  --color-sidebar-accent-foreground: #ffffff;
+  --color-sidebar-border: #38334a;
+  --color-sidebar-ring: #9d6dd9;
+  
+  --radius-lg: 0.75rem;
+  --radius-md: 0.625rem;
+  --radius-sm: 0.5rem;
+  
+  /* Custom animations */
+  --animate-float: float 3s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: theme('colors.border');
+  }
+  
+  body {
+    background-color: theme('colors.background');
+    color: theme('colors.foreground');
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .primary-text {
+    color: theme('colors.primary');
+  }
+  
+  .primary-border {
+    border: 2px solid theme('colors.primary');
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 40px rgba(157, 109, 217, 0.3);
+  }
 }
