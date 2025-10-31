@@ -3,7 +3,7 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ScienceSection } from "@/components/ScienceSection";
-//import { AppShowcaseSection } from "@/components/AppShowcaseSection";
+import { AppShowcaseSection } from "@/components/AppShowcaseSection";
 //import { AudienceSection } from "@/components/AudienceSection";
 //import { PartnersSection } from "@/components/PartnersSection";
 //import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -18,8 +18,8 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <ScienceSection />
-      {/*<AppShowcaseSection />
-      <AudienceSection />
+      <AppShowcaseSection />
+      {/*<AudienceSection />
       <PartnersSection />
       <TestimonialsSection />
       <FAQSection />
