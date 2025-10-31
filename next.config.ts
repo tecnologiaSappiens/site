@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,  // Necessário para export estático
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/nome-do-repositorio' : '',  // Ajuste para o nome do seu repo
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/nome-do-repositorio/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/site' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/site/' : '',
 };
 
 export default nextConfig;
