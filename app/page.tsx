@@ -5,7 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { ScienceSection } from "@/components/ScienceSection";
 import { AppShowcaseSection } from "@/components/AppShowcaseSection";
 import { AudienceSection } from "@/components/AudienceSection";
-//import { PartnersSection } from "@/components/PartnersSection";
+import { PartnersSection } from "@/components/PartnersSection";
 //import { TestimonialsSection } from "@/components/TestimonialsSection";
 //import { FAQSection } from "@/components/FAQSection";
 //import { FinalCTASection } from "@/components/FinalCTASection";
@@ -20,8 +20,8 @@ export default function Home() {
       <ScienceSection />
       <AppShowcaseSection />
       <AudienceSection />
-      {/*<PartnersSection />
-      <TestimonialsSection />
+      <PartnersSection />
+      {/*<TestimonialsSection />
       <FAQSection />
       <FinalCTASection />
       <Footer />
