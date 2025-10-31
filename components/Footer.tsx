@@ -1,11 +1,22 @@
+"use client";
+
 import { Instagram, Linkedin } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { ContactModal } from "@/components/ContactModal";
 import sappieLogo from "@/assets/sappie-logo.svg";
 
+type FooterLink = {
+  label: string;
+  href: string;
+  onClick?: () => void;
+};
+
 export const Footer = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const links = {
+
+  const links: Record<string, FooterLink[]> = {
     soluções: [
       { label: "Para Alunos", href: "/alunos" },
       { label: "Para Criadores", href: "/criadores" },
@@ -40,7 +51,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12 mb-12">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2 lg:col-span-2">
-            <img src={sappieLogo} alt="Sappie" className="h-8 w-auto mb-4" />
+            <Image src={sappieLogo} alt="Sappie" className="h-8 w-auto mb-4" priority />
             <p className="text-muted-foreground mb-6 leading-relaxed text-sm max-w-xs">
               Flashcards inteligentes para aprendizado exponencial e monetização do conhecimento.
             </p>
@@ -49,9 +60,11 @@ export const Footer = () => {
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
                 return (
-                  <a
+                 <a 
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="w-9 h-9 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
                   >
@@ -69,18 +82,21 @@ export const Footer = () => {
               <ul className="space-y-2.5">
                 {items.map((link, index) => (
                   <li key={index}>
-                    <a 
-                      href={link.href}
-                      onClick={(e) => {
-                        if (link.onClick) {
-                          e.preventDefault();
-                          link.onClick();
-                        }
-                      }}
-                      className="text-muted-foreground hover:text-primary transition-colors text-sm block cursor-pointer"
-                    >
-                      {link.label}
-                    </a>
+                    {link.onClick ? (
+                      <button
+                        onClick={link.onClick}
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm text-left cursor-pointer"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm block"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
