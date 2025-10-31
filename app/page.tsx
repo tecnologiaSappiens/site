@@ -9,7 +9,7 @@ import { PartnersSection } from "@/components/PartnersSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FinalCTASection } from "@/components/FinalCTASection";
-//import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 //import { BackToTop } from "@/components/BackToTop";
 
 export default function Home() {
@@ -24,8 +24,8 @@ export default function Home() {
       <TestimonialsSection />
       <FAQSection />
       <FinalCTASection />
-      {/*<Footer />
-      <BackToTop />*/}
+      <Footer />
+      {/*<BackToTop />*/}
     </div>
   );
 }
