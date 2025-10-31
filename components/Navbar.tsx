@@ -186,8 +186,8 @@ export const Navbar = () => {
                 </NavigationMenuList>
               </NavigationMenu>
               
-              <button
-                onClick={() => handleNavClick({ href: "#parceiros", isLink: false })}
+              <Link
+                href="#parceiros"
                 className={`transition-colors font-medium ${
                   activeSection === "parceiros" 
                     ? "text-primary" 
@@ -195,9 +195,9 @@ export const Navbar = () => {
                 }`}
               >
                 Parceiros
-              </button>
-              <button
-                onClick={() => handleNavClick({ href: "#depoimentos", isLink: false })}
+              </Link>
+              <Link
+                href="#depoimentos"
                 className={`transition-colors font-medium ${
                   activeSection === "depoimentos" 
                     ? "text-primary" 
@@ -205,9 +205,9 @@ export const Navbar = () => {
                 }`}
               >
                 Depoimentos
-              </button>
-              <button
-                onClick={() => handleNavClick({ href: "#cta", isLink: false })}
+              </Link>
+              <Link
+                href="#cta"
                 className={`transition-colors font-medium ${
                   activeSection === "cta" 
                     ? "text-primary" 
@@ -215,7 +215,7 @@ export const Navbar = () => {
                 }`}
               >
                 Contato
-              </button>
+              </Link>
               
               <NavigationMenu>
                 <NavigationMenuList>

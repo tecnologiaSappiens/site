@@ -2,7 +2,7 @@
 
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-//import { ScienceSection } from "@/components/ScienceSection";
+import { ScienceSection } from "@/components/ScienceSection";
 //import { AppShowcaseSection } from "@/components/AppShowcaseSection";
 //import { AudienceSection } from "@/components/AudienceSection";
 //import { PartnersSection } from "@/components/PartnersSection";
@@ -17,8 +17,8 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
-      {/*<ScienceSection />
-      <AppShowcaseSection />
+      <ScienceSection />
+      {/*<AppShowcaseSection />
       <AudienceSection />
       <PartnersSection />
       <TestimonialsSection />
