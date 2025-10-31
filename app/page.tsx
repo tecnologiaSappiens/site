@@ -7,7 +7,7 @@ import { AppShowcaseSection } from "@/components/AppShowcaseSection";
 import { AudienceSection } from "@/components/AudienceSection";
 import { PartnersSection } from "@/components/PartnersSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-//import { FAQSection } from "@/components/FAQSection";
+import { FAQSection } from "@/components/FAQSection";
 //import { FinalCTASection } from "@/components/FinalCTASection";
 //import { Footer } from "@/components/Footer";
 //import { BackToTop } from "@/components/BackToTop";
@@ -22,8 +22,8 @@ export default function Home() {
       <AudienceSection />
       <PartnersSection />
       <TestimonialsSection />
-      {/*<FAQSection />
-      <FinalCTASection />
+      <FAQSection />
+      {/*<FinalCTASection />
       <Footer />
       <BackToTop />*/}
     </div>
