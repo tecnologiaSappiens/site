@@ -7,6 +7,18 @@ const nextConfig: NextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/site' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/site/' : '',
+  turbopack: {
+    rules: {
+      '*.webm': {
+        loaders: ['file-loader'],
+        as: '*.js',
+      },
+      '*.mp4': {
+        loaders: ['file-loader'],
+        as: '*.js',
+      },
+    },
+  },
 };
 
 export default nextConfig;
