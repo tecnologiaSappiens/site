@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { CheckCircle, Brain, Zap, Target } from "lucide-react";
 
 export const AppShowcaseSection = () => {
+  const basePath = process.env.NODE_ENV === 'production' ? '/site' : '';
+
   const features = [
     {
       icon: CheckCircle,
@@ -90,7 +92,7 @@ export const AppShowcaseSection = () => {
                   muted
                   playsInline
                 >
-                  <source src="/videos/sappie-video-app.webm" type="video/webm" />
+                  <source src={`${basePath}/videos/sappie-video-app.webm`} type="video/webm" />
                 </video>
                 
                 {/* Glow effect */}
