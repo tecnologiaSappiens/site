@@ -2,50 +2,52 @@
 
 @theme {
   /* Sappie Brand Colors - Purple/Pink Tech Theme */
-  --color-background: #1a1625;
-  --color-foreground: #ffffff;
-  --color-card: #221d30;
-  --color-card-foreground: #ffffff;
-  --color-popover: #221d30;
-  --color-popover-foreground: #ffffff;
-  
+  --color-background: hsl(222 47% 11%); /* #1a1625 */
+  --color-foreground: hsl(0 0% 100%); /* #ffffff */
+
+  --color-card: hsl(222 47% 15%); /* #221d30 */
+  --color-card-foreground: hsl(0 0% 100%);
+
+  --color-popover: hsl(222 47% 15%); /* #221d30 */
+  --color-popover-foreground: hsl(0 0% 100%);
+
   /* Primary: Purple Button Color */
-  --color-primary: #9d6dd9;
-  --color-primary-foreground: #ffffff;
-  
+  --color-primary: hsl(267 56% 62%); /* #9d6dd9 */
+  --color-primary-foreground: hsl(0 0% 100%);
+
   /* Secondary: Dark Purple Elements */
-  --color-secondary: #310062;
-  --color-secondary-foreground: #ffffff;
-  
+  --color-secondary: hsl(276 100% 19%); /* #310062 */
+  --color-secondary-foreground: hsl(0 0% 100%);
+
   /* Muted: Subtle grays */
-  --color-muted: #38334a;
-  --color-muted-foreground: #b3b3b3;
-  
+  --color-muted: hsl(222 30% 25%); /* #38334a */
+  --color-muted-foreground: hsl(220 10% 70%); /* #b3b3b3 */
+
   /* Accent: Dark Purple Elements */
-  --color-accent: #310062;
-  --color-accent-foreground: #ffffff;
-  
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #ffffff;
-  
-  --color-border: #38334a;
-  --color-input: #2d2838;
-  --color-ring: #9d6dd9;
-  
+  --color-accent: hsl(276 100% 19%); /* #310062 */
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  --color-destructive: hsl(0 84% 60%); /* #ef4444 */
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(222 30% 25%); /* #38334a */
+  --color-input: hsl(222 30% 20%); /* #2d2838 */
+  --color-ring: hsl(267 56% 62%); /* #9d6dd9 */
+
   /* Sidebar */
-  --color-sidebar-background: #1c1729;
-  --color-sidebar-foreground: #ffffff;
-  --color-sidebar-primary: #9d6dd9;
-  --color-sidebar-primary-foreground: #ffffff;
-  --color-sidebar-accent: #26212f;
-  --color-sidebar-accent-foreground: #ffffff;
-  --color-sidebar-border: #38334a;
-  --color-sidebar-ring: #9d6dd9;
-  
+  --color-sidebar-background: hsl(222 47% 13%); /* #1c1729 */
+  --color-sidebar-foreground: hsl(0 0% 100%);
+  --color-sidebar-primary: hsl(267 56% 62%); /* #9d6dd9 */
+  --color-sidebar-primary-foreground: hsl(0 0% 100%);
+  --color-sidebar-accent: hsl(222 47% 18%); /* #26212f */
+  --color-sidebar-accent-foreground: hsl(0 0% 100%);
+  --color-sidebar-border: hsl(222 30% 25%); /* #38334a */
+  --color-sidebar-ring: hsl(267 56% 62%); /* #9d6dd9 */
+
   --radius-lg: 0.75rem;
   --radius-md: 0.625rem;
   --radius-sm: 0.5rem;
-  
+
   /* Custom animations */
   --animate-float: float 3s ease-in-out infinite;
 }
@@ -54,7 +56,7 @@
   * {
     border-color: theme('colors.border');
   }
-  
+
   body {
     background-color: theme('colors.background');
     color: theme('colors.foreground');
@@ -62,9 +64,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
+  }
+
+  button,
+  [role="button"],
+  .cursor-pointer {
+    cursor: pointer;
   }
 }
 
@@ -72,21 +80,22 @@
   .primary-text {
     color: theme('colors.primary');
   }
-  
+
   .primary-border {
     border: 2px solid theme('colors.primary');
   }
-  
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
-  
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
   }
-  
+
   .glow-effect {
-    box-shadow: 0 0 40px rgba(157, 109, 217, 0.3);
+    box-shadow: 0 0 40px hsl(270 54% 63% / 0.3); /* #9d6dd9 glow */
   }
 }
+
