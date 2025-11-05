@@ -145,7 +145,6 @@ export const AppShowcaseSection = () => {
                   muted
                   playsInline
                   preload="metadata"
-                  poster="/site/videos/sappie-video-app-poster.jpg"
                   aria-label="Demonstração do aplicativo Sappie em ação"
                 >
                   <source src="/site/videos/sappie-video-app.webm" type="video/webm" />
