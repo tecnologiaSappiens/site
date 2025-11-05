@@ -4,8 +4,16 @@ import Link from "next/link";
 import { FooterContact } from "./FooterContact";
 import sappieLogo from "@/assets/sappie-logo.svg";
 
-// Static footer data
-const footerLinks = {
+// Type definition for footer links
+type FooterLink = {
+  readonly label: string;
+  readonly href: string;
+  readonly description: string;
+  readonly isContact?: boolean; // Optional property
+};
+
+// Static footer data with proper typing
+const footerLinks: Record<string, readonly FooterLink[]> = {
   soluções: [
     { label: "Para Alunos", href: "/alunos", description: "Estude com flashcards inteligentes" },
     { label: "Para Criadores", href: "/criadores", description: "Monetize seu conhecimento" },
@@ -27,7 +35,7 @@ const footerLinks = {
     { label: "Política de Privacidade", href: "/politica-de-privacidade", description: "Como protegemos seus dados" },
     { label: "LGPD", href: "/lgpd", description: "Conformidade com proteção de dados" },
   ],
-} as const;
+};
 
 const socialLinks = [
   { 
@@ -109,7 +117,6 @@ export const Footer = () => {
               <meta itemProp="name" content="Sappie" />
               <meta itemProp="url" content="https://sappie.com.br" />
               <meta itemProp="email" content="contato@sappie.com.br" />
-              <meta itemProp="telephone" content="+55-11-XXXX-XXXX" />
               <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                 <meta itemProp="addressCountry" content="BR" />
                 <meta itemProp="addressLocality" content="São Paulo" />
@@ -180,7 +187,6 @@ export const Footer = () => {
             "foundingDate": "2020",
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+55-11-XXXX-XXXX",
               "contactType": "customer service",
               "email": "contato@sappie.com.br",
               "areaServed": "BR",
@@ -194,10 +200,6 @@ export const Footer = () => {
               "@type": "PostalAddress",
               "addressCountry": "BR",
               "addressLocality": "São Paulo"
-            },
-            "founder": {
-              "@type": "Organization",
-              "name": "Sappie"
             }
           })
         }}

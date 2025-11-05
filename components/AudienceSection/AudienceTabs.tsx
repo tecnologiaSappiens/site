@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
@@ -14,20 +14,21 @@ const iconMap = {
   School,
 };
 
+// Updated type to accept readonly arrays
 type AudienceData = {
-  id: string;
-  label: string;
-  icon: keyof typeof iconMap;
-  title: string;
-  description: string;
-  benefits: string[];
-  cta: string;
-  href: string;
-  schema: string;
+  readonly id: string;
+  readonly label: string;
+  readonly icon: keyof typeof iconMap;
+  readonly title: string;
+  readonly description: string;
+  readonly benefits: readonly string[];  // Changed from string[] to readonly string[]
+  readonly cta: string;
+  readonly href: string;
+  readonly schema: string;
 };
 
 interface AudienceTabsProps {
-  audiences: readonly AudienceData[];
+  audiences: readonly AudienceData[];  // Changed from AudienceData[]
 }
 
 export const AudienceTabs = ({ audiences }: AudienceTabsProps) => {
