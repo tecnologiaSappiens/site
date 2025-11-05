@@ -33,7 +33,6 @@ const footerLinks: Record<string, readonly FooterLink[]> = {
   legal: [
     { label: "Termos de Uso", href: "/termos-de-uso", description: "Condições de uso da plataforma" },
     { label: "Política de Privacidade", href: "/politica-de-privacidade", description: "Como protegemos seus dados" },
-    { label: "LGPD", href: "/lgpd", description: "Conformidade com proteção de dados" },
   ],
 };
 
