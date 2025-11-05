@@ -6,12 +6,14 @@ const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-inter',
+  display: 'swap',
 })
 
 const plusJakarta = Plus_Jakarta_Sans({ 
   subsets: ['latin'],
   weight: ['600', '700', '800'],
   variable: '--font-plus-jakarta',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -48,8 +50,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${plusJakarta.variable} antialiased`}>
+    <html lang="pt-br" className={`${inter.variable} ${plusJakarta.variable}`}>
+      <body className="font-sans antialiased">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
         {children}
       </body>
     </html>
