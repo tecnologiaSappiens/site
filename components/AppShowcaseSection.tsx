@@ -147,7 +147,7 @@ export const AppShowcaseSection = () => {
                   preload="metadata"
                   aria-label="Demonstração do aplicativo Sappie em ação"
                 >
-                  <source src="/site/videos/sappie-video-app.webm" type="video/webm" />
+                  <source src="/videos/sappie-video-app.webm" type="video/webm" />
                   <track
                     kind="captions"
                     srcLang="pt-BR"
