@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',  // Habilita export estático
+  output: 'export',
   images: {
-    unoptimized: true,  // Necessário para export estático
+    unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/site' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/site/' : '',
+  basePath: '',
+  assetPrefix: '',
   turbopack: {
     rules: {
       '*.webm': {
