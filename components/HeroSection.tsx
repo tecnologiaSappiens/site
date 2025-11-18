@@ -36,7 +36,7 @@ export const HeroSection = () => {
           >
             <span className="primary-text">FLASHCARDS INTELIGENTES:</span>
             <br />
-            <span className="text-foreground">ESTUDE RÁPIDO, LEMBRE TUDO E SE DIVIRTA!</span>
+            <span className="text-foreground">ESTUDE RÁPIDO, LEMBRE TUDO E DIVIRTA-SE!</span>
           </h1>
           
           <p 
