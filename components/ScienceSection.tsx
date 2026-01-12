@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Calendar, Trophy } from "lucide-react";
 
@@ -121,26 +123,34 @@ export const ScienceSection = () => {
               itemScope
               itemType="https://schema.org/Claim"
             >
-              <div 
+              <div
                 className="text-6xl sm:text-7xl font-heading primary-text mb-4 font-bold"
                 itemProp="name"
                 aria-label={`${stat.value} - ${stat.label}`}
               >
                 {stat.value}
               </div>
-              <p 
+              <p
                 className="text-lg text-foreground font-semibold tracking-wide"
                 itemProp="text"
               >
                 {stat.label}
               </p>
-              
+
               {/* Hidden description for SEO and screen readers */}
               <span className="sr-only" itemProp="description">
                 {stat.description}
               </span>
             </Card>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button size="lg" asChild>
+            <Link href="/ciencia">
+              Entenda a ciência por trás da Sappie
+            </Link>
+          </Button>
         </div>
 
         {/* Hidden structured data for rich snippets */}
