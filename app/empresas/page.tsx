@@ -20,7 +20,6 @@ import {
   Brain,
   Target,
   AlertTriangle,
-  Quote,
   Zap,
   Briefcase,
 } from "lucide-react";
@@ -206,28 +205,9 @@ const WHATSAPP_URL =
 
 const painPoints = [
   {
-    icon: Brain,
-    stat: "70%",
-    statLabel: "do treinamento é esquecido em 24h",
-    title: "Vendedores esquecem o que aprenderam",
-    description:
-      "Sua equipe participa de treinamentos caros, mas em poucos dias não consegue lembrar detalhes cruciais do produto. A curva do esquecimento de Ebbinghaus é implacável.",
-  },
-  {
     icon: AlertTriangle,
-    stat: "45%",
-    statLabel: "dos negócios perdidos por falta de conhecimento",
-    title: "Conhecimento inconsistente custa negócios",
     description:
-      "Quando cada vendedor tem um nível diferente de conhecimento, a experiência do cliente se torna imprevisível. Prospects percebem insegurança e escolhem a concorrência.",
-  },
-  {
-    icon: Clock,
-    stat: "R$ 4.000+",
-    statLabel: "gasto médio por colaborador em treinamento anual",
-    title: "Treinamento tradicional é caro e não fixa",
-    description:
-      "Workshops presenciais, palestras e PDFs longos consomem tempo e orçamento, mas a retenção a longo prazo é mínima. Você investe, mas o conhecimento se perde.",
+      "A diferença entre o 'sim' e o 'vou pensar' é de poucos segundos. Se a sua equipe não tem os scripts e as respostas às objeções na ponta da língua, eles transmitem insegurança no momento mais crítico da negociação. Você está perdendo faturamento porque a hesitação na hora H custa receita real.",
   },
 ] as const;
 
@@ -271,44 +251,9 @@ const benefits = [
 ] as const;
 
 const metrics = [
-  { value: "+40%", label: "em taxa de conversão de vendas" },
   { value: "3x", label: "mais rápido no onboarding de novos vendedores" },
-  { value: "92%", label: "de retenção de conhecimento após 30 dias" },
+  { value: ">90%", label: "de retenção de conhecimento após 30 dias" },
   { value: "-60%", label: "no tempo gasto em treinamentos presenciais" },
-] as const;
-
-const testimonials = [
-  {
-    name: "Ricardo Mendes",
-    role: "Diretor de Vendas",
-    company: "TechFlow Solutions",
-    content:
-      "Em 3 meses, nossa equipe de 40 vendedores aumentou a taxa de conversão em 35%. O conhecimento de produto que antes se perdia após os treinamentos agora é retido de verdade.",
-    metric: "+35% conversão",
-  },
-  {
-    name: "Camila Ferreira",
-    role: "VP de Operações",
-    company: "Grupo Inova Digital",
-    content:
-      "O onboarding que levava 3 meses agora leva 4 semanas. Novos vendedores chegam ao campo muito mais preparados e confiantes.",
-    metric: "Onboarding 3x mais rápido",
-  },
-  {
-    name: "Fernando Almeida",
-    role: "Head de RH e Desenvolvimento",
-    company: "BrasilTech Corp",
-    content:
-      "Finalmente conseguimos medir o conhecimento do time de forma objetiva. Os dashboards nos mostram exatamente onde investir em capacitação.",
-    metric: "92% retenção em 30 dias",
-  },
-] as const;
-
-const clientLogos = [
-  { name: "TechFlow Solutions", initial: "TF" },
-  { name: "Grupo Inova Digital", initial: "GI" },
-  { name: "BrasilTech Corp", initial: "BT" },
-  { name: "Vendas Pro Academy", initial: "VP" },
 ] as const;
 
 const steps = [
@@ -394,17 +339,16 @@ const Empresas = () => {
             <div className="text-center animate-fade-in">
               <Badge className="mb-6 bg-primary/10 text-primary border-0 px-4 py-2">
                 <Briefcase className="w-4 h-4 mr-2" aria-hidden="true" />
-                Solução para Equipes de Vendas
+                Solução para Equipes Comerciais
               </Badge>
 
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6">
-                Sua equipe de vendas{" "}
-                <span className="primary-text">esquece</span> o treinamento em
-                dias?
+                Otimize suas {" "}
+                <span className="primary-text">vendas</span> com os cards inteligentes da Sappie
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                70% do conhecimento de treinamento é perdido em 24 horas. A
+                A
                 Sappie usa ciência de repetição espaçada para garantir que seus
                 vendedores dominem o produto, fechem mais negócios e nunca mais
                 percam deals por falta de conhecimento.
@@ -422,30 +366,9 @@ const Empresas = () => {
                     rel="noopener noreferrer"
                   >
                     <MessageCircle className="mr-2 h-5 w-5" />
-                    FALE COM UM ESPECIALISTA
+                    FALE COM UM SÓCIO
                   </a>
                 </Button>
-              </div>
-
-              {/* Social proof strip */}
-              <div className="flex flex-col items-center gap-4">
-                <p className="text-sm text-muted-foreground">
-                  Empresas que confiam na Sappie
-                </p>
-                <div className="flex items-center gap-3">
-                  {clientLogos.map((logo) => (
-                    <div
-                      key={logo.initial}
-                      className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-xs font-semibold text-muted-foreground"
-                      title={logo.name}
-                    >
-                      {logo.initial}
-                    </div>
-                  ))}
-                  <span className="text-sm text-muted-foreground ml-1">
-                    + mais empresas
-                  </span>
-                </div>
               </div>
             </div>
           </div>
@@ -457,41 +380,25 @@ const Empresas = () => {
           aria-labelledby="problem-heading"
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2
-              id="problem-heading"
-              className="font-heading text-3xl lg:text-4xl text-center mb-16"
-            >
-              O problema que está{" "}
-              <span className="primary-text">custando</span> negócios
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {painPoints.map((point, index) => {
-                const Icon = point.icon;
-                return (
-                  <Card
-                    key={point.title}
-                    className="p-8 bg-card/50 backdrop-blur-sm text-center animate-fade-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="w-14 h-14 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
-                      <Icon
-                        className="w-7 h-7 text-primary"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div className="text-4xl font-heading primary-text mb-1">
-                      {point.stat}
-                    </div>
-                    <div className="text-sm text-muted-foreground mb-4">
-                      {point.statLabel}
-                    </div>
-                    <h3 className="font-heading text-xl mb-3">{point.title}</h3>
-                    <p className="text-muted-foreground">
-                      {point.description}
-                    </p>
-                  </Card>
-                );
-              })}
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="w-14 h-14 rounded-full bg-primary/10 mx-auto mb-6 flex items-center justify-center">
+                <AlertTriangle className="w-7 h-7 text-primary" aria-hidden="true" />
+              </div>
+              <h2
+                id="problem-heading"
+                className="font-heading text-3xl lg:text-4xl text-center mb-8"
+              >
+                Falta de conhecimento. O problema que está{" "}
+                <span className="primary-text">custando</span> negócios
+              </h2>
+              {painPoints.map((point, index) => (
+                <p
+                  key={index}
+                  className="text-lg text-muted-foreground leading-relaxed"
+                >
+                  {point.description}
+                </p>
+              ))}
             </div>
           </div>
         </section>
@@ -602,68 +509,17 @@ const Empresas = () => {
             </h2>
 
             {/* Metrics strip */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto mb-20">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
               {metrics.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="text-4xl sm:text-5xl font-heading primary-text mb-2">
+                <Card key={metric.label} className="p-6 bg-card/50 backdrop-blur-sm text-center">
+                  <div className="text-4xl sm:text-5xl font-heading primary-text mb-8">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-xl text-muted-foreground">
                     {metric.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Testimonials */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-              {testimonials.map((testimonial, index) => (
-                <Card
-                  key={testimonial.name}
-                  className="p-6 bg-card/50 backdrop-blur-sm animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <Quote
-                    className="w-8 h-8 text-primary/40 mb-4"
-                    aria-hidden="true"
-                  />
-                  <p className="text-foreground/90 mb-6 leading-relaxed">
-                    &ldquo;{testimonial.content}&rdquo;
-                  </p>
-                  <div className="border-t border-border pt-4">
-                    <p className="font-semibold text-foreground">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.role}, {testimonial.company}
-                    </p>
-                    <Badge className="mt-2 bg-primary/10 text-primary border-0 text-xs">
-                      {testimonial.metric}
-                    </Badge>
                   </div>
                 </Card>
               ))}
-            </div>
-
-            {/* Client logos */}
-            <div className="flex flex-col items-center gap-4">
-              <p className="text-sm text-muted-foreground font-medium">
-                Empresas que transformaram seus resultados com a Sappie
-              </p>
-              <div className="flex items-center gap-4">
-                {clientLogos.map((logo) => (
-                  <div
-                    key={logo.initial}
-                    className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-sm font-semibold text-muted-foreground"
-                    title={logo.name}
-                  >
-                    {logo.initial}
-                  </div>
-                ))}
-                <span className="text-sm text-muted-foreground ml-2">
-                  + mais empresas
-                </span>
-              </div>
             </div>
           </div>
         </section>
@@ -759,7 +615,7 @@ const Empresas = () => {
                 <span className="primary-text">resultados</span>?
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Converse com um especialista e descubra como a Sappie pode
+                Converse com um sócio e descubra como a Sappie pode
                 aumentar a performance da sua equipe de vendas em semanas, não
                 meses.
               </p>
@@ -775,13 +631,10 @@ const Empresas = () => {
                     rel="noopener noreferrer"
                   >
                     <MessageCircle className="mr-2 h-5 w-5" />
-                    FALE COM ESPECIALISTA AGORA
+                    FALE COM UM SÓCIO AGORA
                   </a>
                 </Button>
               </div>
-              <p className="text-sm text-muted-foreground mt-4">
-                Sem compromisso. Consultoria inicial gratuita.
-              </p>
             </div>
           </div>
         </section>
