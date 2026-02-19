@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { LandingNavbar } from "@/components/LandingNavbar";
 import { BackToTop } from "@/components/BackToTop";
+import Image from "next/image";
+import Link from "next/link";
+import sappieLogo from "@/assets/sappie-logo.svg";
 import {
   Accordion,
   AccordionContent,
@@ -23,6 +25,8 @@ import {
   Quote,
   Zap,
   Briefcase,
+  Instagram,
+  Linkedin,
 } from "lucide-react";
 
 // SEO Metadata — targeting sales team training
@@ -386,7 +390,7 @@ const Empresas = () => {
       />
 
       <div className="min-h-screen bg-background">
-        <Navbar />
+        <LandingNavbar />
 
         {/* ── Hero Section ─────────────────────────────────────────────── */}
         <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -786,7 +790,70 @@ const Empresas = () => {
           </div>
         </section>
 
-        <Footer />
+        {/* ── Minimal Footer ──────────────────────────────────────────── */}
+        <footer
+          className="bg-card/50 border-t border-border py-8"
+          role="contentinfo"
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <Link href="/" aria-label="Sappie - Página inicial">
+                <Image
+                  src={sappieLogo}
+                  alt="Sappie"
+                  className="h-8 w-auto"
+                />
+              </Link>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.instagram.com/sappie.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram da Sappie"
+                  className="w-9 h-9 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                >
+                  <Instagram
+                    className="w-4 h-4 text-primary"
+                    aria-hidden="true"
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/sappie4all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn da Sappie"
+                  className="w-9 h-9 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
+                >
+                  <Linkedin
+                    className="w-4 h-4 text-primary"
+                    aria-hidden="true"
+                  />
+                </a>
+              </div>
+              <div className="flex gap-6 text-sm text-muted-foreground">
+                <Link
+                  href="/termos-de-uso"
+                  className="hover:text-primary transition-colors"
+                >
+                  Termos de Uso
+                </Link>
+                <Link
+                  href="/politica-de-privacidade"
+                  className="hover:text-primary transition-colors"
+                >
+                  Privacidade
+                </Link>
+              </div>
+            </div>
+            <div className="text-center mt-6 pt-6 border-t border-border">
+              <p className="text-sm text-muted-foreground">
+                &copy; {new Date().getFullYear()} Sappie. Todos os direitos
+                reservados.
+              </p>
+            </div>
+          </div>
+        </footer>
+
         <BackToTop />
       </div>
     </>
