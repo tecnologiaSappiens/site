@@ -15,7 +15,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import * as XLSX from 'xlsx';
 
 // Mock data
 const studyMomentsHourly = [
@@ -450,24 +449,31 @@ const Dashboards = () => {
   };
 
   const exportToExcel = () => {
-    const dataToExport = getSortedData(getFilteredStudents(), sortConfig).map((student) => ({
-      'Aluno': student.name,
-      'Status': student.active ? 'Ativo' : 'Inativo',
-      'Streak': student.streak,
-      'Flashcards/dia': 45,
-      'Total Flashcards': student.flashcards,
-      'Tempo Total': '8h 30min',
-      'Tempo Médio': '22min',
-      'Dias Estudo': 15,
-      '% Acerto': student.accuracy
-    }));
+    const headers = ['Aluno', 'Status', 'Streak', 'Flashcards/dia', 'Total Flashcards', 'Tempo Total', 'Tempo Médio', 'Dias Estudo', '% Acerto'];
+    const rows = getSortedData(getFilteredStudents(), sortConfig).map((student) => [
+      student.name,
+      student.active ? 'Ativo' : 'Inativo',
+      student.streak,
+      45,
+      student.flashcards,
+      '8h 30min',
+      '22min',
+      15,
+      student.accuracy
+    ]);
 
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Estatísticas');
-    
-    // O navegador abrirá o dialog nativo para o usuário escolher o nome e local do arquivo
-    XLSX.writeFile(workbook, 'estatisticas-alunos.xlsx');
+    const csvContent = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(';'))
+      .join('\n');
+
+    const BOM = '\uFEFF';
+    const blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'estatisticas-alunos.csv';
+    link.click();
+    URL.revokeObjectURL(url);
   };
 
   const getPaginatedData = <T,>(data: T[]) => {
