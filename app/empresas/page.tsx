@@ -201,7 +201,7 @@ const structuredData = {
 // ─── Static Data ────────────────────────────────────────────────────────────
 
 const WHATSAPP_URL =
-  "https://wa.me/5511933919447?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20equipes%20de%20vendas";
+  "https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20equipes%20de%20vendas";
 
 const painPoints = [
   {
