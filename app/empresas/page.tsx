@@ -13,14 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   MessageCircle,
-  TrendingUp,
-  Clock,
-  BarChart3,
-  Users,
-  Brain,
   Target,
-  AlertTriangle,
-  Zap,
   Briefcase,
 } from "lucide-react";
 
@@ -203,59 +196,6 @@ const structuredData = {
 const WHATSAPP_URL =
   "https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20equipes%20de%20vendas";
 
-const painPoints = [
-  {
-    icon: AlertTriangle,
-    description:
-      "A diferença entre o 'sim' e o 'vou pensar' é de poucos segundos. Se a sua equipe não tem os scripts e as respostas às objeções na ponta da língua, eles transmitem insegurança no momento mais crítico da negociação. Você está perdendo faturamento porque a hesitação na hora H custa receita real.",
-  },
-] as const;
-
-const benefits = [
-  {
-    icon: TrendingUp,
-    title: "Aumente as taxas de conversão",
-    description:
-      "Vendedores que dominam o produto transmitem confiança. Clientes percebem e fecham mais rápido.",
-  },
-  {
-    icon: Zap,
-    title: "Onboarding 3x mais rápido",
-    description:
-      "Novos vendedores atingem performance máxima em semanas, não meses. Microlearning diário acelera a curva de aprendizado.",
-  },
-  {
-    icon: Users,
-    title: "Conhecimento consistente em todo o time",
-    description:
-      "Garanta que cada vendedor, do júnior ao sênior, domine as mesmas informações críticas sobre produto e processo.",
-  },
-  {
-    icon: BarChart3,
-    title: "Métricas de performance em tempo real",
-    description:
-      "Acompanhe quem estudou, o que domina e onde estão as lacunas. Dados acionáveis para gestores de vendas.",
-  },
-  {
-    icon: Clock,
-    title: "Microlearning que não interrompe o trabalho",
-    description:
-      "Sessões de 5 minutos no celular, entre reuniões ou no transporte. Sem tirar vendedores do campo.",
-  },
-  {
-    icon: Brain,
-    title: "Retenção cientificamente comprovada",
-    description:
-      "Algoritmo de repetição espaçada garante que o conhecimento vá para a memória de longo prazo, não apenas de curto prazo.",
-  },
-] as const;
-
-const metrics = [
-  { value: "3x", label: "mais rápido no onboarding de novos vendedores" },
-  { value: ">90%", label: "de retenção de conhecimento após 30 dias" },
-  { value: "-60%", label: "no tempo gasto em treinamentos presenciais" },
-] as const;
-
 const steps = [
   {
     number: "01",
@@ -275,7 +215,7 @@ const steps = [
     number: "03",
     title: "Lançamento com a Equipe",
     description:
-      "Distribuímos para sua equipe com onboarding guiado. Cada vendedor recebe seu programa personalizado no celular.",
+      "Distribuímos para sua equipe com onboarding guiado. Cada colaborador recebe seu programa personalizado no celular.",
     duration: "1 dia",
   },
   {
@@ -339,19 +279,18 @@ const Empresas = () => {
             <div className="text-center animate-fade-in">
               <Badge className="mb-6 bg-primary/10 text-primary border-0 px-4 py-2">
                 <Briefcase className="w-4 h-4 mr-2" aria-hidden="true" />
-                Solução para Equipes Comerciais
+                Solução para Treinamentos
               </Badge>
 
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6">
-                Otimize suas {" "}
-                <span className="primary-text">vendas</span> com os cards inteligentes da Sappie
+                Transforme conhecimento em  {" "}
+                <span className="primary-text">resultados</span> com os cards da Sappie
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
                 A
-                Sappie usa ciência de repetição espaçada para garantir que seus
-                vendedores dominem o produto, fechem mais negócios e nunca mais
-                percam deals por falta de conhecimento.
+                Sappie usa ciência da aprendizagem para garantir que seus
+                colaboradores saibam o que realmente importa.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -374,45 +313,16 @@ const Empresas = () => {
           </div>
         </section>
 
-        {/* ── Problem Agitation ────────────────────────────────────────── */}
-        <section
-          className="py-20 bg-secondary/30"
-          aria-labelledby="problem-heading"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="w-14 h-14 rounded-full bg-primary/10 mx-auto mb-6 flex items-center justify-center">
-                <AlertTriangle className="w-7 h-7 text-primary" aria-hidden="true" />
-              </div>
-              <h2
-                id="problem-heading"
-                className="font-heading text-3xl lg:text-4xl text-center mb-8"
-              >
-                Falta de conhecimento. O problema que está{" "}
-                <span className="primary-text">custando</span> negócios
-              </h2>
-              {painPoints.map((point, index) => (
-                <p
-                  key={index}
-                  className="text-lg text-muted-foreground leading-relaxed"
-                >
-                  {point.description}
-                </p>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ── Solution Bridge ──────────────────────────────────────────── */}
-        <section className="py-20" aria-labelledby="solution-heading">
+        <section className="py-20 bg-secondary/30" aria-labelledby="solution-heading">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2
                 id="solution-heading"
                 className="font-heading text-3xl lg:text-4xl mb-8"
               >
-                A ciência a favor do seu{" "}
-                <span className="primary-text">time de vendas</span>
+                A ciência a favor da sua{" "}
+                <span className="primary-text">empresa</span>
               </h2>
 
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
@@ -426,7 +336,7 @@ const Empresas = () => {
 
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Flashcards inteligentes que se adaptam ao nível de cada
-                vendedor, reforçando exatamente o que cada um precisa revisar, no
+                colaborador, reforçando exatamente o que cada um precisa revisar, no
                 momento certo.
               </p>
 
@@ -456,70 +366,42 @@ const Empresas = () => {
           </div>
         </section>
 
-        {/* ── Benefits ─────────────────────────────────────────────────── */}
-        <section
-          className="py-20 bg-secondary/30"
-          aria-labelledby="benefits-heading"
-        >
+        {/* ── Results ───────────────────────────────────────── */}
+        <section className="py-20" aria-labelledby="efficiency-heading">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2
-              id="benefits-heading"
-              className="font-heading text-3xl lg:text-4xl text-center mb-16"
-            >
-              <span className="primary-text">Resultados reais</span> para sua
-              operação comercial
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <Card
-                    key={benefit.title}
-                    className="p-6 hover:shadow-lg transition-all duration-300 animate-fade-in bg-card/50 backdrop-blur-sm"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                      <Icon
-                        className="w-6 h-6 text-primary"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <h3 className="font-heading text-xl mb-3">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {benefit.description}
-                    </p>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+            <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-5xl mx-auto items-start">
 
-        {/* ── Social Proof / Results ───────────────────────────────────── */}
-        <section className="py-20" aria-labelledby="results-heading">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2
-              id="results-heading"
-              className="font-heading text-3xl lg:text-4xl text-center mb-16"
-            >
-              Números que{" "}
-              <span className="primary-text">falam por si</span>
-            </h2>
+              {/* Headings row */}
+              <h2
+                id="efficiency-heading"
+                className="font-heading text-3xl lg:text-4xl"
+              >
+                Treinamentos mais <span className="primary-text">eficientes</span>...
+              </h2>
+              <h2 className="font-heading text-3xl lg:text-4xl">
+                ... com mais <span className="primary-text">resultados</span>
+              </h2>
 
-            {/* Metrics strip */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
-              {metrics.map((metric) => (
-                <Card key={metric.label} className="p-6 bg-card/50 backdrop-blur-sm text-center">
-                  <div className="text-4xl sm:text-5xl font-heading primary-text mb-8">
-                    {metric.value}
-                  </div>
-                  <div className="text-xl text-muted-foreground">
-                    {metric.label}
-                  </div>
-                </Card>
-              ))}
+              {/* First cards row */}
+              <Card className="p-8 bg-card/50 backdrop-blur-sm text-center">
+                <div className="text-4xl sm:text-5xl font-heading primary-text mb-4">R$200+</div>
+                <p className="text-lg text-muted-foreground">economia por colaborador por mês</p>
+              </Card>
+              <Card className="p-8 bg-card/50 backdrop-blur-sm text-center">
+                <div className="text-4xl sm:text-5xl font-heading primary-text mb-4">&gt;90%</div>
+                <p className="text-lg text-muted-foreground">de retenção de conhecimento em 30 dias</p>
+              </Card>
+
+              {/* Second cards row */}
+              <Card className="p-8 bg-card/50 backdrop-blur-sm text-center">
+                <div className="text-4xl sm:text-5xl font-heading primary-text mb-4">-90%</div>
+                <p className="text-lg text-muted-foreground">em horas de treinamento presencial</p>
+              </Card>
+              <Card className="p-8 bg-card/50 backdrop-blur-sm text-center">
+                <div className="text-4xl sm:text-5xl font-heading primary-text mb-4">-70%</div>
+                <p className="text-lg text-muted-foreground">de reclamações em case comercial</p>
+              </Card>
+
             </div>
           </div>
         </section>
