@@ -1,129 +1,51 @@
-import { FAQAccordion } from "./FAQAccordion";
+import { FAQ } from "@/components/shared/FAQ";
 
-// Static FAQ data with enhanced metadata
+// B2B-first FAQ; consumer questions live on /alunos and /criadores
 const faqs = [
   {
-    id: "flashcards-como-funcionam",
-    question: "O que são flashcards e como eles funcionam?",
-    answer: "Flashcards são cartões de estudo com uma pergunta de um lado e a resposta do outro. Na Sappie, usamos repetição espaçada, um método científico que otimiza o momento de revisão de cada cartão para maximizar a retenção na memória de longo prazo.",
-    category: "Básico",
-    keywords: "flashcards, repetição espaçada, método de estudo, memória",
+    question: "Como a Sappie funciona para treinamento corporativo?",
+    answer:
+      "Transformamos seus materiais de treinamento — onboarding, produto, compliance, vendas — em trilhas de microlearning com flashcards. Seus colaboradores estudam em sessões curtas pelo celular, e o algoritmo de repetição espaçada garante que o conhecimento seja retido. Gestores acompanham progresso e retenção em relatórios por equipe.",
   },
   {
-    id: "repeticao-espacada",
-    question: "Como funciona a repetição espaçada?",
-    answer: "A repetição espaçada é baseada em estudos de neurociência que mostram que revisar informações em intervalos específicos aumenta a retenção. Nosso algoritmo calcula automaticamente o melhor momento para você revisar cada flashcard, baseado no seu desempenho anterior.",
-    category: "Funcionalidades",
-    keywords: "repetição espaçada, algoritmo, neurociência, retenção",
+    question: "E para instituições de ensino?",
+    answer:
+      "Sua instituição converte materiais didáticos em flashcards oficiais, organizados por turma e disciplina. Os alunos revisam o conteúdo das aulas de forma gamificada, e professores e coordenadores acompanham relatórios de progresso e desempenho.",
   },
   {
-    id: "criar-flashcards",
-    question: "Posso criar meus próprios flashcards?",
-    answer: "Sim! A Sappie permite que você crie seus próprios flashcards personalizados. Você pode adicionar texto, imagens e organizar em baralhos temáticos. Além disso, criadores de conteúdo podem monetizar seus flashcards na plataforma.",
-    category: "Criação",
-    keywords: "criar flashcards, personalizado, monetização, criadores",
+    question: "O que é repetição espaçada e por que funciona?",
+    answer:
+      "A repetição espaçada é um método com mais de 30 anos de evidência científica: revisar o conteúdo em intervalos crescentes, calculados pelo algoritmo, aumenta a retenção de longo prazo em até 90%. O que a pessoa erra aparece mais; o que domina, aparece menos.",
   },
   {
-    id: "dispositivos-moveis",
-    question: "A plataforma funciona em dispositivos móveis?",
-    answer: "Sim, a Sappie é totalmente responsiva e funciona perfeitamente em smartphones e tablets. Você pode estudar onde e quando quiser, e seu progresso é sincronizado automaticamente entre todos os dispositivos.",
-    category: "Acesso",
-    keywords: "mobile, responsivo, sincronização, multiplataforma",
+    question: "Quem cria o conteúdo? Precisamos de uma equipe dedicada?",
+    answer:
+      "Não. Nossa consultoria de conteúdo apoia a conversão dos seus materiais em flashcards de qualidade. Sua equipe também pode criar e atualizar decks de forma autônoma no estúdio de conteúdo, sem conhecimento técnico.",
   },
   {
-    id: "acompanhar-progresso",
-    question: "Como posso acompanhar meu progresso?",
-    answer: "A plataforma oferece dashboards detalhados com estatísticas sobre seu desempenho, tempo de estudo, taxa de retenção e progresso em cada baralho. Você pode visualizar gráficos e métricas que ajudam a identificar áreas que precisam de mais atenção.",
-    category: "Funcionalidades",
-    keywords: "progresso, estatísticas, dashboard, métricas, desempenho",
+    question: "Como acompanhamos o progresso da equipe ou dos alunos?",
+    answer:
+      "A plataforma oferece painéis com métricas de progresso, tempo de estudo, taxa de retenção e lacunas de conhecimento — por pessoa, equipe ou turma. Gestores e coordenadores enxergam exatamente o que ficou aprendido.",
   },
   {
-    id: "monetizacao-criadores",
-    question: "Como funciona a monetização para criadores?",
-    answer: "Criadores de conteúdo podem vender seus baralhos de flashcards na plataforma Sappie. Você define o preço, gerencia seu conteúdo e recebe pagamentos diretamente. É uma ótima forma de compartilhar conhecimento e gerar renda.",
-    category: "Monetização",
-    keywords: "monetização, vender flashcards, criadores, renda passiva",
+    question: "Funciona em qualquer dispositivo?",
+    answer:
+      "Sim. A Sappie tem aplicativo para iOS e Android e funciona também no navegador. O progresso é sincronizado automaticamente entre os dispositivos, permitindo aprendizado assíncrono onde e quando fizer sentido.",
   },
   {
-    id: "treinamento-corporativo",
-    question: "A Sappie pode ser usada para treinamento corporativo?",
-    answer: "Sim! Empresas usam a Sappie para treinamentos internos, onboarding de funcionários e capacitação contínua. A plataforma permite criar conteúdo personalizado e acompanhar o progresso de toda a equipe.",
-    category: "Empresas",
-    keywords: "treinamento corporativo, empresas, onboarding, capacitação",
+    question: "Quanto custa?",
+    answer:
+      "O investimento depende do tamanho da sua equipe ou instituição e do apoio de conteúdo necessário. Agende uma demonstração e apresentamos uma proposta sob medida para o seu contexto.",
   },
 ] as const;
 
 export const FAQSection = () => {
   return (
-    <section 
-      id="faq" 
+    <FAQ
+      items={faqs}
+      id="faq"
       className="py-24 bg-background"
-      aria-labelledby="faq-heading"
-      itemScope
-      itemType="https://schema.org/FAQPage"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center mb-16 animate-fade-in">
-          <h2 
-            id="faq-heading"
-            className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6"
-          >
-            Perguntas <span className="primary-text">Frequentes</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Tudo o que você precisa saber sobre a Sappie
-          </p>
-        </header>
-
-        <div className="max-w-4xl mx-auto">
-          <FAQAccordion faqs={faqs} />
-        </div>
-
-        {/* Hidden structured data for SEO - FAQPage Schema */}
-        <div className="sr-only">
-          <h3>Lista completa de perguntas frequentes:</h3>
-          <dl>
-            {faqs.map((faq) => (
-              <div 
-                key={faq.id}
-                itemProp="mainEntity"
-                itemScope
-                itemType="https://schema.org/Question"
-              >
-                <dt itemProp="name">{faq.question}</dt>
-                <dd
-                  itemProp="acceptedAnswer"
-                  itemScope
-                  itemType="https://schema.org/Answer"
-                >
-                  <div itemProp="text">{faq.answer}</div>
-                </dd>
-                <meta itemProp="keywords" content={faq.keywords} />
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        {/* Additional metadata for better indexing */}
-        <div className="sr-only">
-          <div itemScope itemType="https://schema.org/WebPage">
-            <meta itemProp="name" content="Perguntas Frequentes - Sappie" />
-            <meta itemProp="description" content="Respostas para as perguntas mais comuns sobre flashcards inteligentes, repetição espaçada e a plataforma Sappie" />
-            <div itemProp="breadcrumb" itemScope itemType="https://schema.org/BreadcrumbList">
-              <div itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <meta itemProp="position" content="1" />
-                <a itemProp="item" href="/">
-                  <span itemProp="name">Início</span>
-                </a>
-              </div>
-              <div itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <meta itemProp="position" content="2" />
-                <span itemProp="name">FAQ</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      subtitle="Tudo o que você precisa saber sobre a Sappie"
+    />
   );
 };

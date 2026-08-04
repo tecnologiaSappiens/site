@@ -1,9 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { ScienceSection } from "@/components/ScienceSection";
-import { AppShowcaseSection } from "@/components/AppShowcaseSection";
-import { AudienceSection } from "@/components/AudienceSection";
 import { PartnersSection } from "@/components/PartnersSection";
+import { StatsSection } from "@/components/StatsSection";
+import { AudienceSection } from "@/components/AudienceSection";
+import { AppShowcaseSection } from "@/components/AppShowcaseSection";
+import { ScienceSection } from "@/components/ScienceSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FinalCTASection } from "@/components/FinalCTASection";
@@ -15,10 +16,11 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
-      <ScienceSection />
-      <AppShowcaseSection />
-      <AudienceSection />
       <PartnersSection />
+      <StatsSection />
+      <AudienceSection />
+      <AppShowcaseSection />
+      <ScienceSection />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTASection />

@@ -48,6 +48,17 @@ export const ContactModal = ({ open, onOpenChange }: ContactModalProps = {}) => 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Radix Select isn't a native form control, so `required` doesn't block submit
+    if (!formData.profile) {
+      toast({
+        title: "Selecione seu perfil",
+        description: "Escolha uma opção de perfil antes de enviar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -78,7 +89,7 @@ export const ContactModal = ({ open, onOpenChange }: ContactModalProps = {}) => 
       } else {
         throw new Error("Erro ao enviar mensagem");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Erro ao enviar mensagem",
         description: "Por favor, tente novamente mais tarde.",

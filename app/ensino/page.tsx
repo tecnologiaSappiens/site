@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { Check, BookOpen, Users, BarChart, Shield, Zap, GraduationCap, School, MessageCircle } from "lucide-react";
+import { DemoCTA } from "@/components/shared/DemoCTA";
 import {
   Accordion,
   AccordionContent,
@@ -314,10 +315,11 @@ const Ensino = () => {
                 Converta seus materiais didáticos em flashcards científicos e potencialize o sucesso acadêmico dos seus alunos.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90" asChild>
+                <DemoCTA size="lg" showArrow className="text-lg px-8 py-6" />
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6" asChild>
                   <a href="https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20Institui%C3%A7%C3%B5es%20de%20Ensino" target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="mr-2 h-5 w-5" />
-                    FALAR COM ESPECIALISTA
+                    Falar com especialista
                   </a>
                 </Button>
               </div>
@@ -503,12 +505,15 @@ const Ensino = () => {
               <p className="text-xl text-muted-foreground mb-8">
                 Agende uma demonstração e descubra como podemos apoiar o sucesso dos seus alunos
               </p>
-              <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90" asChild>
-                <a href="https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20Institui%C3%A7%C3%B5es%20de%20Ensino" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  FALAR COM ESPECIALISTA
-                </a>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <DemoCTA size="lg" showArrow className="text-lg px-8 py-6 glow-effect" />
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6" asChild>
+                  <a href="https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20Institui%C3%A7%C3%B5es%20de%20Ensino" target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Falar com especialista
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </section>

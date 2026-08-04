@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
+import { DemoCTA } from "@/components/shared/DemoCTA";
 import {
   Brain,
   Mountain,
@@ -157,10 +158,11 @@ const Ciencia = () => {
               </Badge>
 
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6">
-                Manual do Sistema de <span className="primary-text">Aprendizagem Inteligente</span>
+                A ciência por trás dos <span className="primary-text">resultados</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Como o algoritmo da Sappie potencializa seu treinamento corporativo
+                Como o algoritmo da Sappie transforma treinamento corporativo e ensino em retenção
+                de longo prazo — com 20 a 30% menos tempo de estudo
               </p>
             </div>
           </div>
@@ -601,17 +603,20 @@ const Ciencia = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <h2 id="cta-heading" className="font-heading text-4xl sm:text-5xl mb-6">
-                Pronto para <span className="primary-text">transformar</span> seu aprendizado?
+                Pronto para ver essa ciência <span className="primary-text">na prática</span>?
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Experimente o poder da ciência aplicada ao seu treinamento
+                Agende uma demonstração e veja o algoritmo aplicado ao seu treinamento ou ensino
               </p>
-              <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 group" asChild>
-                <Link href="/produtos">
-                  EXPLORAR FLASHCARDS
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <DemoCTA size="lg" showArrow className="text-lg px-8 py-6 glow-effect" />
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 group" asChild>
+                  <Link href="/produtos">
+                    Explorar flashcards
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>

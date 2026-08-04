@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState, useEffect, useCallback, memo } from "react";
-import { Menu, X, Home } from "lucide-react";
+import { useState, useEffect, memo } from "react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import sappieLogo from "@/assets/sappie-logo.svg";
 import {
@@ -16,50 +16,29 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
+const WHATSAPP_URL = "https://wa.me/5511935031749?text=Quero%20conhecer%20a%20Sappie";
+
 interface NavbarClientProps {
   navigationData: {
-    menuBeforeSolutions: readonly { label: string; href: string; id: string }[];
-    menuAfterSolutions: readonly { label: string; href: string; id: string }[];
-    solutions: readonly { label: string; href: string; fullPath: string }[];
-    platform: readonly { label: string; href: string; isExternal: boolean }[];
+    mainLinks: readonly { label: string; href: string }[];
+    plataforma: readonly { label: string; href: string; description: string }[];
+    afterPlataforma: readonly { label: string; href: string }[];
+    paraVoce: readonly { label: string; href: string; isExternal: boolean }[];
   };
 }
 
 export const NavbarClient = memo(({ navigationData }: NavbarClientProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
   const pathname = usePathname();
-  const router = useRouter();
-  
-  const isSpecificPage = pathname !== "/";
 
-  // Optimized scroll handler with throttling
   useEffect(() => {
     let ticking = false;
-    
+
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           setIsScrolled(window.scrollY > 20);
-
-          // Only track active section on homepage
-          if (!isSpecificPage) {
-            const sections = ["hero", "ciencia", "app", "solucoes", "parceiros", "depoimentos", "cta"];
-            const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-            for (const sectionId of sections) {
-              const element = document.getElementById(sectionId);
-              if (element) {
-                const { offsetTop, offsetHeight } = element;
-                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                  setActiveSection(sectionId);
-                  break;
-                }
-              }
-            }
-          }
-          
           ticking = false;
         });
         ticking = true;
@@ -68,53 +47,17 @@ export const NavbarClient = memo(({ navigationData }: NavbarClientProps) => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isSpecificPage]);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
-
-  const scrollToSection = useCallback((href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setIsMobileMenuOpen(false);
-    }
   }, []);
 
-  const handleNavClick = useCallback((href: string) => {
-    if (pathname !== "/") {
-      router.push("/" + href);
-    } else {
-      scrollToSection(href);
-    }
-  }, [pathname, router, scrollToSection]);
-
-  const handleSolutionClick = useCallback((solution: { href: string; fullPath: string }) => {
-    if (pathname !== "/") {
-      router.push(solution.fullPath);
-    } else {
-      window.location.hash = solution.href;
-      const sectionElement = document.getElementById("solucoes");
-      if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-    setIsMobileMenuOpen(false);
-  }, [pathname, router]);
-
-  const handleLogoClick = useCallback((e: React.MouseEvent) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [pathname]);
+  const isActive = (href: string) => {
+    const route = href.split("#")[0] || "/";
+    return route === "/" ? pathname === "/" : pathname.startsWith(route);
+  };
 
   return (
     <div
       className={`transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
           : "bg-transparent"
       }`}
@@ -123,39 +66,33 @@ export const NavbarClient = memo(({ navigationData }: NavbarClientProps) => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link
             href="/"
-            onClick={handleLogoClick}
-            className="hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity shrink-0"
             aria-label="Sappie - Página inicial"
           >
-            <Image 
-              src={sappieLogo} 
-              alt="Sappie Logo" 
-              className="h-8 md:h-10 w-auto" 
-              priority
-            />
+            <Image src={sappieLogo} alt="Sappie Logo" className="h-8 md:h-10 w-auto" priority />
           </Link>
 
-          {isSpecificPage ? (
-            <div className="hidden md:flex items-center gap-4">
-              <Link href="/" aria-label="Voltar para a página inicial">
-                <Button variant="outline" className="gap-2">
-                  <Home className="w-4 h-4" aria-hidden="true" />
-                  Voltar à Home
-                </Button>
-              </Link>
-            </div>
-          ) : (
-            <DesktopMenu
-              navigationData={navigationData}
-              activeSection={activeSection}
-              handleNavClick={handleNavClick}
-              handleSolutionClick={handleSolutionClick}
-            />
-          )}
+          <DesktopMenu navigationData={navigationData} isActive={isActive} />
+
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <Button variant="ghost" size="icon" asChild>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Falar com a Sappie pelo WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" aria-hidden="true" />
+              </a>
+            </Button>
+            <Button asChild>
+              <Link href="/demo">Agendar demonstração</Link>
+            </Button>
+          </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-foreground p-2 hover:bg-accent rounded-md transition-colors"
+            className="lg:hidden text-foreground p-2 hover:bg-accent rounded-md transition-colors"
             aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -167,10 +104,8 @@ export const NavbarClient = memo(({ navigationData }: NavbarClientProps) => {
 
       {isMobileMenuOpen && (
         <MobileMenu
-          isSpecificPage={isSpecificPage}
           navigationData={navigationData}
-          handleNavClick={handleNavClick}
-          handleSolutionClick={handleSolutionClick}
+          isActive={isActive}
           closeMobileMenu={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -181,236 +116,223 @@ export const NavbarClient = memo(({ navigationData }: NavbarClientProps) => {
 NavbarClient.displayName = "NavbarClient";
 
 // Memoized Desktop Menu Component
-const DesktopMenu = memo(({ 
-  navigationData, 
-  activeSection, 
-  handleNavClick,
-  handleSolutionClick 
-}: {
-  navigationData: NavbarClientProps['navigationData'];
-  activeSection: string;
-  handleNavClick: (href: string) => void;
-  handleSolutionClick: (solution: { href: string; fullPath: string }) => void;
-}) => (
-  <div className="hidden md:flex items-center gap-8">
-    {/* Menu items BEFORE Soluções dropdown */}
-    {navigationData.menuBeforeSolutions.map((item) => (
-      <Link
-        key={item.href}
-        href={item.href}
-        onClick={(e) => {
-          e.preventDefault();
-          handleNavClick(item.href);
-        }}
-        className={`transition-colors font-medium ${
-          activeSection === item.id
-            ? "text-primary" 
-            : "text-foreground/80 hover:text-primary"
-        }`}
-        aria-current={activeSection === item.id ? "page" : undefined}
-      >
-        {item.label}
-      </Link>
-    ))}
-    
-    {/* Soluções Dropdown */}
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger 
-            className={`bg-transparent hover:bg-transparent data-[state=open]:bg-transparent hover:text-primary data-[state=open]:text-primary font-medium h-auto p-0 ${
-              activeSection === "solucoes" ? "text-primary" : "text-foreground/80"
-            }`}
-            aria-label="Menu de soluções"
-          >
-            Soluções
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[220px] gap-1 p-2 bg-background border border-border shadow-lg">
-              {navigationData.solutions.map((solution) => (
-                <li key={solution.label}>
-                  <NavigationMenuLink asChild>
-                    <button
-                      onClick={() => handleSolutionClick(solution)}
-                      className="w-full block select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-left"
-                    >
-                      <div className="text-sm font-medium">{solution.label}</div>
-                    </button>
-                  </NavigationMenuLink>
-                </li>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+const DesktopMenu = memo(
+  ({
+    navigationData,
+    isActive,
+  }: {
+    navigationData: NavbarClientProps["navigationData"];
+    isActive: (href: string) => boolean;
+  }) => (
+    <div className="hidden lg:flex items-center gap-7">
+      {navigationData.mainLinks.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={`transition-colors font-medium ${
+            isActive(item.href) ? "text-primary" : "text-foreground/80 hover:text-primary"
+          }`}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
+          {item.label}
+        </Link>
+      ))}
 
-    {/* Menu items AFTER Soluções dropdown */}
-    {navigationData.menuAfterSolutions.map((item) => (
-      <Link
-        key={item.href}
-        href={item.href}
-        onClick={(e) => {
-          e.preventDefault();
-          handleNavClick(item.href);
-        }}
-        className={`transition-colors font-medium ${
-          activeSection === item.id
-            ? "text-primary" 
-            : "text-foreground/80 hover:text-primary"
-        }`}
-        aria-current={activeSection === item.id ? "page" : undefined}
-      >
-        {item.label}
-      </Link>
-    ))}
-    
-    {/* Plataforma Dropdown - AT THE END */}
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger 
-            className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent hover:text-primary data-[state=open]:text-primary font-medium h-auto p-0 text-foreground/80"
-            aria-label="Menu da plataforma"
-          >
-            Plataforma
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[180px] gap-1 p-2 bg-background border border-border shadow-lg">
-              {navigationData.platform.map((platform) => (
-                <li key={platform.label}>
-                  <NavigationMenuLink asChild>
-                    {platform.isExternal ? (
-                      <a
-                        href={platform.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+      {/* Plataforma Dropdown */}
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger
+              className={`bg-transparent hover:bg-transparent data-[state=open]:bg-transparent hover:text-primary data-[state=open]:text-primary font-medium h-auto p-0 ${
+                isActive("/plataforma") ? "text-primary" : "text-foreground/80"
+              }`}
+              aria-label="Menu da plataforma"
+            >
+              Plataforma
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[280px] gap-1 p-2 bg-background border border-border shadow-lg">
+                {navigationData.plataforma.map((item) => (
+                  <li key={item.href}>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={item.href}
                         className="block select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
-                        <div className="text-sm font-medium">{platform.label}</div>
-                      </a>
-                    ) : (
-                      <button
-                        onClick={() => handleNavClick(platform.href)}
-                        className="w-full block select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-left"
-                      >
-                        <div className="text-sm font-medium">{platform.label}</div>
-                      </button>
-                    )}
-                  </NavigationMenuLink>
-                </li>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-  </div>
-));
+                        <div className="text-sm font-medium mb-1">{item.label}</div>
+                        <p className="text-xs text-muted-foreground leading-snug">{item.description}</p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+
+      {navigationData.afterPlataforma.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={`transition-colors font-medium ${
+            isActive(item.href) ? "text-primary" : "text-foreground/80 hover:text-primary"
+          }`}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
+          {item.label}
+        </Link>
+      ))}
+
+      {/* Para você Dropdown */}
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger
+              className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent hover:text-primary data-[state=open]:text-primary font-medium h-auto p-0 text-foreground/80"
+              aria-label="Menu para alunos e criadores"
+            >
+              Para você
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[220px] gap-1 p-2 bg-background border border-border shadow-lg">
+                {navigationData.paraVoce.map((item) => (
+                  <li key={item.label}>
+                    <NavigationMenuLink asChild>
+                      {item.isExternal ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium">{item.label}</div>
+                        </a>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className="block select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium">{item.label}</div>
+                        </Link>
+                      )}
+                    </NavigationMenuLink>
+                  </li>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
+  )
+);
 
 DesktopMenu.displayName = "DesktopMenu";
 
 // Memoized Mobile Menu Component
-const MobileMenu = memo(({ 
-  isSpecificPage,
-  navigationData,
-  handleNavClick,
-  handleSolutionClick,
-  closeMobileMenu
-}: {
-  isSpecificPage: boolean;
-  navigationData: NavbarClientProps['navigationData'];
-  handleNavClick: (href: string) => void;
-  handleSolutionClick: (solution: { href: string; fullPath: string }) => void;
-  closeMobileMenu: () => void;
-}) => {
-  // Combine both menu arrays for mobile
-  const allMenuItems = [...navigationData.menuBeforeSolutions, ...navigationData.menuAfterSolutions];
-  
-  return (
-    <div 
-      id="mobile-menu"
-      className="md:hidden bg-background/98 backdrop-blur-md border-t border-border"
-      role="dialog"
-      aria-label="Menu de navegação mobile"
-    >
-      <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-        {isSpecificPage ? (
-          <Link 
-            href="/" 
-            onClick={closeMobileMenu}
-            aria-label="Voltar para a página inicial"
-          >
-            <Button variant="outline" className="w-full gap-2">
-              <Home className="w-4 h-4" aria-hidden="true" />
-              Voltar à Home
-            </Button>
-          </Link>
-        ) : (
-          <>
-            {allMenuItems.map((item) => (
-              <button
+const MobileMenu = memo(
+  ({
+    navigationData,
+    isActive,
+    closeMobileMenu,
+  }: {
+    navigationData: NavbarClientProps["navigationData"];
+    isActive: (href: string) => boolean;
+    closeMobileMenu: () => void;
+  }) => {
+    return (
+      <div
+        id="mobile-menu"
+        className="lg:hidden bg-background/98 backdrop-blur-md border-t border-border max-h-[calc(100vh-4rem)] overflow-y-auto"
+        role="dialog"
+        aria-label="Menu de navegação mobile"
+      >
+        <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
+          {navigationData.mainLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMobileMenu}
+              className={`transition-colors font-medium py-2.5 ${
+                isActive(item.href) ? "text-primary" : "text-foreground/80 hover:text-primary"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+
+          <div className="border-t border-border mt-3 pt-4">
+            <h3 className="text-foreground/60 text-sm font-semibold mb-2">Plataforma</h3>
+            {navigationData.plataforma.map((item) => (
+              <Link
                 key={item.href}
-                onClick={() => {
-                  handleNavClick(item.href);
-                  closeMobileMenu();
-                }}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium text-left py-2"
+                href={item.href}
+                onClick={closeMobileMenu}
+                className="block text-foreground/80 hover:text-primary transition-colors font-medium py-2 px-3"
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
-            
-            <div className="border-t border-border pt-4">
-              <h3 className="text-foreground/60 text-sm font-semibold mb-2 px-2">
-                Plataforma
-              </h3>
-              {navigationData.platform.map((platform) => (
-                <div key={platform.label}>
-                  {platform.isExternal ? (
-                    <a
-                      href={platform.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={closeMobileMenu}
-                      className="block text-foreground/80 hover:text-primary transition-colors font-medium text-left py-2 px-4"
-                    >
-                      {platform.label}
-                    </a>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        handleNavClick(platform.href);
-                        closeMobileMenu();
-                      }}
-                      className="w-full block text-foreground/80 hover:text-primary transition-colors font-medium text-left py-2 px-4"
-                    >
-                      {platform.label}
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-            
-            <div className="border-t border-border pt-4">
-              <h3 className="text-foreground/60 text-sm font-semibold mb-2 px-2">
-                Soluções
-              </h3>
-              {navigationData.solutions.map((solution) => (
-                <button
-                  key={solution.label}
-                  onClick={() => handleSolutionClick(solution)}
-                  className="w-full block text-foreground/80 hover:text-primary transition-colors font-medium text-left py-2 px-4"
+          </div>
+
+          {navigationData.afterPlataforma.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMobileMenu}
+              className={`transition-colors font-medium py-2.5 ${
+                isActive(item.href) ? "text-primary" : "text-foreground/80 hover:text-primary"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+
+          <div className="border-t border-border mt-3 pt-4">
+            <h3 className="text-foreground/60 text-sm font-semibold mb-2">Para você</h3>
+            {navigationData.paraVoce.map((item) =>
+              item.isExternal ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMobileMenu}
+                  className="block text-foreground/80 hover:text-primary transition-colors font-medium py-2 px-3"
                 >
-                  {solution.label}
-                </button>
-              ))}
-            </div>
-          </>
-        )}
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className="block text-foreground/80 hover:text-primary transition-colors font-medium py-2 px-3"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </div>
+
+          <div className="border-t border-border mt-3 pt-5 flex flex-col gap-3">
+            <Button asChild className="w-full">
+              <Link href="/demo" onClick={closeMobileMenu}>
+                Agendar demonstração
+              </Link>
+            </Button>
+            <Button variant="outline" asChild className="w-full">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="w-4 h-4 mr-2" aria-hidden="true" />
+                Falar no WhatsApp
+              </a>
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 MobileMenu.displayName = "MobileMenu";

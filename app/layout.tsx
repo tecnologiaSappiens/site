@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -17,17 +18,18 @@ const plusJakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Sappie - Flashcards Inteligentes para Aprendizado Exponencial',
-  description: 'Potencialize seu aprendizado e transforme seu conhecimento em valor com a plataforma de flashcards mais inovadora do mercado. Aprenda 20x mais rápido com repetição espaçada e recordação ativa.',
-  keywords: ['flashcards', 'aprendizado', 'educação', 'estudo', 'repetição espaçada', 'memorização', 'sappie'],
+  metadataBase: new URL('https://sappie.com.br'),
+  title: 'Sappie - Educação Corporativa e Ensino com Microlearning Gamificado',
+  description: 'Plataforma de microlearning gamificado com repetição espaçada para empresas e instituições de ensino. Treinamentos e conteúdos que sua equipe e seus alunos realmente lembram: 90% de retenção, aprendizado 20x mais rápido.',
+  keywords: ['educação corporativa', 'treinamento corporativo', 'microlearning', 'instituições de ensino', 'flashcards', 'repetição espaçada', 'gamificação', 'L&D', 'sappie'],
   authors: [{ name: 'Sappie' }],
   icons: {
     icon: 'https://storage.googleapis.com/gpt-engineer-file-uploads/JePuR2kIQNUfaAoOGM3ltroluTf1/uploads/1761316656195-Sappie-Logo(3).png',
   },
   openGraph: {
     type: 'website',
-    title: 'Sappie - Flashcards Inteligentes para Aprendizado Exponencial',
-    description: 'Potencialize seu aprendizado e transforme seu conhecimento em valor com a plataforma de flashcards mais inovadora do mercado. Aprenda 20x mais rápido com repetição espaçada e recordação ativa.',
+    title: 'Sappie - Educação Corporativa e Ensino com Microlearning Gamificado',
+    description: 'Plataforma de microlearning gamificado com repetição espaçada para empresas e instituições de ensino. 90% de retenção, aprendizado 20x mais rápido.',
     images: [
       {
         url: 'https://storage.googleapis.com/gpt-engineer-file-uploads/JePuR2kIQNUfaAoOGM3ltroluTf1/social-images/social-1761316783389-Sappie-Logo(4).png',
@@ -38,8 +40,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@sappie',
-    title: 'Sappie - Flashcards Inteligentes para Aprendizado Exponencial',
-    description: 'Potencialize seu aprendizado e transforme seu conhecimento em valor com a plataforma de flashcards mais inovadora do mercado. Aprenda 20x mais rápido com repetição espaçada e recordação ativa.',
+    title: 'Sappie - Educação Corporativa e Ensino com Microlearning Gamificado',
+    description: 'Plataforma de microlearning gamificado com repetição espaçada para empresas e instituições de ensino. 90% de retenção, aprendizado 20x mais rápido.',
     images: ['https://storage.googleapis.com/gpt-engineer-file-uploads/JePuR2kIQNUfaAoOGM3ltroluTf1/social-images/social-1761316783389-Sappie-Logo(4).png'],
   },
 }
@@ -52,8 +54,8 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${inter.variable} ${plusJakarta.variable}`}>
       <body className="font-sans antialiased">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
         {children}
+        <Toaster />
       </body>
     </html>
   );

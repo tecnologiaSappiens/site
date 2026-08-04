@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Brain, Calendar, Trophy } from "lucide-react";
 
 // Static data (better for SEO and performance)
@@ -22,19 +21,6 @@ const features = [
     title: "Gamificação",
     description: "O que você erra, aparece mais; o que você já domina, aparece menos. Simples, eficiente e no seu ritmo!",
     keywords: "gamificação, aprendizado adaptativo, estudo personalizado",
-  },
-] as const;
-
-const stats = [
-  { 
-    value: "90%", 
-    label: "LEMBRE ATÉ 90% DO CONTEÚDO",
-    description: "Taxa de retenção com flashcards e repetição espaçada"
-  },
-  { 
-    value: "20x", 
-    label: "MAIS EFICIENTE QUE MÉTODOS TRADICIONAIS",
-    description: "Comparado com releitura e anotações passivas"
   },
 ] as const;
 
@@ -66,8 +52,8 @@ export const ScienceSection = () => {
         </header>
 
         {/* Features */}
-        <div 
-          className="grid md:grid-cols-3 gap-8 mb-20"
+        <div
+          className="grid md:grid-cols-3 gap-8"
           role="list"
           aria-label="Metodologias de aprendizado"
         >
@@ -106,43 +92,6 @@ export const ScienceSection = () => {
               </article>
             );
           })}
-        </div>
-
-        {/* Stats with Schema.org markup */}
-        <div 
-          className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-          role="list"
-          aria-label="Estatísticas de eficiência"
-        >
-          {stats.map((stat, index) => (
-            <Card
-              key={stat.label}
-              className="p-12 text-center bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 animate-scale-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
-              role="listitem"
-              itemScope
-              itemType="https://schema.org/Claim"
-            >
-              <div
-                className="text-6xl sm:text-7xl font-heading primary-text mb-4 font-bold"
-                itemProp="name"
-                aria-label={`${stat.value} - ${stat.label}`}
-              >
-                {stat.value}
-              </div>
-              <p
-                className="text-lg text-foreground font-semibold tracking-wide"
-                itemProp="text"
-              >
-                {stat.label}
-              </p>
-
-              {/* Hidden description for SEO and screen readers */}
-              <span className="sr-only" itemProp="description">
-                {stat.description}
-              </span>
-            </Card>
-          ))}
         </div>
 
         <div className="text-center mt-12">

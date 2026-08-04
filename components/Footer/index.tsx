@@ -10,27 +10,29 @@ type FooterLink = {
   readonly href: string;
   readonly description: string;
   readonly isContact?: boolean; // Optional property
+  readonly isExternal?: boolean;
 };
 
 // Static footer data with proper typing
 const footerLinks: Record<string, readonly FooterLink[]> = {
   soluções: [
+    { label: "Para Empresas", href: "/empresas", description: "Educação corporativa que gera resultados" },
+    { label: "Para Instituições de Ensino", href: "/ensino", description: "Engajamento e retenção para seus alunos" },
+    { label: "Agendar demonstração", href: "/demo", description: "Veja a Sappie em ação" },
+  ],
+  plataforma: [
+    { label: "Conheça a plataforma", href: "/plataforma", description: "Módulos e funcionalidades" },
+    { label: "Ciência", href: "/ciencia", description: "Base científica do método" },
+    { label: "Acessar a plataforma", href: "https://creator.sappie.com.br/", description: "Portal do criador", isExternal: true },
+  ],
+  "para você": [
     { label: "Para Alunos", href: "/alunos", description: "Estude com flashcards inteligentes" },
     { label: "Para Criadores", href: "/criadores", description: "Monetize seu conhecimento" },
-    { label: "Para Empresas", href: "/empresas", description: "Treinamento corporativo eficiente" },
-    { label: "Para Instituições", href: "/ensino", description: "Apoio acadêmico inovador" },
+    { label: "Loja de Flashcards", href: "/produtos", description: "Decks prontos para estudar" },
   ],
-  produto: [
-    { label: "Ciência", href: "/#ciencia", description: "Base científica do método" },
-    { label: "Aplicativo", href: "/#app", description: "Conheça nossa plataforma" },
-    { label: "Parceiros", href: "/#parceiros", description: "Quem confia na Sappie" },
-    { label: "Depoimentos", href: "/#depoimentos", description: "Experiências reais" },
-  ],
-  recursos: [
-    { label: "Perguntas Frequentes", href: "/#faq", description: "Tire suas dúvidas" },
+  contato: [
     { label: "Fale Conosco", href: "#contact", description: "Entre em contato", isContact: true },
-  ],
-  legal: [
+    { label: "WhatsApp", href: "https://wa.me/5511935031749?text=Quero%20conhecer%20a%20Sappie", description: "Fale com a gente pelo WhatsApp", isExternal: true },
     { label: "Termos de Uso", href: "/termos-de-uso", description: "Condições de uso da plataforma" },
     { label: "Política de Privacidade", href: "/politica-de-privacidade", description: "Como protegemos seus dados" },
   ],
@@ -84,7 +86,7 @@ export const Footer = () => {
               className="text-muted-foreground mb-6 leading-relaxed text-sm max-w-xs"
               itemProp="description"
             >
-              Flashcards inteligentes para aprendizado exponencial e monetização do conhecimento.
+              Microlearning gamificado com repetição espaçada para empresas, instituições de ensino, alunos e criadores.
             </p>
             
             {/* Social Links */}
@@ -144,6 +146,17 @@ export const Footer = () => {
                   <li key={link.label}>
                     {link.isContact ? (
                       <FooterContact label={link.label} />
+                    ) : link.isExternal ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm block"
+                        title={link.description}
+                        itemProp="url"
+                      >
+                        <span itemProp="name">{link.label}</span>
+                      </a>
                     ) : (
                       <Link
                         href={link.href}
@@ -182,7 +195,7 @@ export const Footer = () => {
             "name": "Sappie",
             "url": "https://sappie.com.br",
             "logo": "https://sappie.com.br/logo.png",
-            "description": "Plataforma de flashcards inteligentes com repetição espaçada para aprendizado eficiente e monetização de conhecimento",
+            "description": "Plataforma de microlearning gamificado com repetição espaçada para educação corporativa, instituições de ensino, alunos e criadores de conteúdo",
             "foundingDate": "2020",
             "contactPoint": {
               "@type": "ContactPoint",

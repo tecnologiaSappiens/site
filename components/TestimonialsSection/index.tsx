@@ -1,152 +1,79 @@
-import { TestimonialsCarousel } from "./TestimonialsCarousel";
+import Image from "next/image";
+import { Section } from "@/components/shared/Section";
+import { DemoCTA } from "@/components/shared/DemoCTA";
 
-// Static testimonials data with enhanced metadata
-const testimonials = [
+import hospitalClinicas from "@/assets/partners/hospital-das-clinicas-fmusp.png";
+import inovaHc from "@/assets/partners/inova-hc.png";
+import ocaEnergia from "@/assets/partners/oca-energia.png";
+
+// Partner-anchored cases with verifiable framing only — quotes and metrics
+// require client sign-off before publishing
+const cases = [
   {
-    id: "1",
-    name: "Maria Silva",
-    role: "Estudante de Medicina",
-    content: "Aumentei significativamente minha retenção de conteúdo depois que comecei a usar os flashcards da Sappie. A repetição espaçada realmente funciona!",
-    rating: 5,
-    date: "2024-10",
-    verified: true,
+    name: "Hospital das Clínicas FMUSP",
+    logo: hospitalClinicas,
+    segment: "Saúde e ensino",
+    description:
+      "O maior complexo hospitalar da América Latina utiliza a Sappie em iniciativas de capacitação, levando microlearning com repetição espaçada para a formação em saúde.",
   },
   {
-    id: "2",
-    name: "Carlos Mendes",
-    role: "Professor e Criador de Conteúdo",
-    content: "Consegui monetizar meu conhecimento de forma simples e eficiente. Tenho muitos alunos usando meus flashcards!",
-    rating: 5,
-    date: "2024-09",
-    verified: true,
+    name: "Inova HC",
+    logo: inovaHc,
+    segment: "Hub de inovação em saúde",
+    description:
+      "Parceiro de inovação do Hospital das Clínicas, o Inova HC apoia a aplicação da metodologia Sappie em contextos reais de educação em saúde.",
   },
   {
-    id: "3",
-    name: "Ana Costa",
-    role: "Gerente de RH",
-    content: "Os treinamentos da nossa equipe nunca foram tão eficientes. A retenção de conhecimento aumentou significativamente.",
-    rating: 5,
-    date: "2024-10",
-    verified: true,
-  },
-  {
-    id: "4",
-    name: "Pedro Oliveira",
-    role: "Estudante de Direito",
-    content: "Passei no exame da OAB estudando com flashcards. A forma de organização e revisão me ajudou demais a memorizar legislação.",
-    rating: 5,
-    date: "2024-09",
-    verified: true,
-  },
-  {
-    id: "5",
-    name: "Juliana Santos",
-    role: "Concurseira",
-    content: "Depois de usar a plataforma, minha nota melhorou muito. Os flashcards me ajudaram a organizar melhor o conteúdo extenso.",
-    rating: 5,
-    date: "2024-08",
-    verified: true,
-  },
-  {
-    id: "6",
-    name: "Ricardo Alves",
-    role: "Estudante de Engenharia",
-    content: "Os flashcards salvaram minhas notas em Cálculo e Física. Agora consigo revisar de forma muito mais eficiente!",
-    rating: 5,
-    date: "2024-10",
-    verified: true,
-  },
-  {
-    id: "7",
-    name: "Fernanda Lima",
-    role: "Professora de Inglês",
-    content: "Criei flashcards para meus alunos e o engajamento deles aumentou muito. Ferramenta incrível para educadores!",
-    rating: 5,
-    date: "2024-09",
-    verified: true,
-  },
-  {
-    id: "8",
-    name: "Lucas Ferreira",
-    role: "Estudante de Farmácia",
-    content: "Consegui decorar todas as classes medicamentosas em tempo recorde. Os flashcards da Sappie são meu segredo para boas notas!",
-    rating: 5,
-    date: "2024-08",
-    verified: true,
+    name: "OCA Energia",
+    logo: ocaEnergia,
+    segment: "Educação corporativa",
+    description:
+      "No setor de energia, a OCA usa a Sappie para transformar conhecimento técnico e comercial em trilhas de microlearning para suas equipes.",
   },
 ] as const;
 
 export const TestimonialsSection = () => {
-  // Calculate aggregate rating
-  const totalRating = testimonials.reduce((acc, t) => acc + t.rating, 0);
-  const averageRating = totalRating / testimonials.length;
-
   return (
-    <section 
-      id="depoimentos" 
-      className="py-24 bg-muted/50"
-      aria-labelledby="depoimentos-heading"
-      itemScope
-      itemType="https://schema.org/Product"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center mb-16 animate-fade-in">
-          <h2 
-            id="depoimentos-heading"
-            className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6"
-            itemProp="name"
+    <Section id="depoimentos" className="py-24 bg-muted/50" ariaLabelledby="depoimentos-heading">
+      <header className="text-center mb-16 animate-fade-in">
+        <h2 id="depoimentos-heading" className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6">
+          Quem já aprende <span className="primary-text">com a Sappie</span>
+        </h2>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          Organizações de saúde, energia e educação que usam nossa metodologia no dia a dia
+        </p>
+      </header>
+
+      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto" role="list">
+        {cases.map((item, index) => (
+          <article
+            key={item.name}
+            className="flex flex-col p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-lg animate-slide-up"
+            style={{ animationDelay: `${index * 0.1}s` }}
+            role="listitem"
           >
-            O que nossos <span className="primary-text">usuários dizem</span>
-          </h2>
-          <p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
-            itemProp="description"
-          >
-            Histórias reais de pessoas que transformaram seu aprendizado com a Sappie
-          </p>
-        </header>
-
-        {/* Hidden aggregate rating for SEO */}
-        <div 
-          itemProp="aggregateRating" 
-          itemScope 
-          itemType="https://schema.org/AggregateRating"
-          className="sr-only"
-        >
-          <meta itemProp="ratingValue" content={averageRating.toFixed(1)} />
-          <meta itemProp="bestRating" content="5" />
-          <meta itemProp="ratingCount" content={String(testimonials.length)} />
-          <meta itemProp="reviewCount" content={String(testimonials.length)} />
-        </div>
-
-        <TestimonialsCarousel testimonials={testimonials} />
-
-        {/* Accessible list of testimonials for screen readers and SEO */}
-        <div className="sr-only">
-          <h3>Lista completa de depoimentos:</h3>
-          <ul>
-            {testimonials.map((testimonial) => (
-              <li 
-                key={testimonial.id}
-                itemProp="review"
-                itemScope
-                itemType="https://schema.org/Review"
-              >
-                <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-                  <meta itemProp="ratingValue" content={String(testimonial.rating)} />
-                  <meta itemProp="bestRating" content="5" />
-                </div>
-                <div itemProp="author" itemScope itemType="https://schema.org/Person">
-                  <meta itemProp="name" content={testimonial.name} />
-                </div>
-                <span itemProp="reviewBody">{testimonial.content}</span>
-                <meta itemProp="datePublished" content={testimonial.date} />
-                {testimonial.verified && <meta itemProp="itemReviewed" content="Sappie Flashcards" />}
-              </li>
-            ))}
-          </ul>
-        </div>
+            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden mb-6">
+              <Image
+                src={item.logo}
+                alt={`Logo ${item.name}`}
+                width={64}
+                height={64}
+                className="w-12 h-12 object-contain p-1"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-2">
+              {item.segment}
+            </p>
+            <h3 className="font-heading text-xl mb-3">{item.name}</h3>
+            <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+          </article>
+        ))}
       </div>
-    </section>
+
+      <div className="text-center mt-12">
+        <DemoCTA size="lg" showArrow label="Quero ver a Sappie em ação" />
+      </div>
+    </Section>
   );
 };

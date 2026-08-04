@@ -16,40 +16,41 @@ import {
   Target,
   Briefcase,
 } from "lucide-react";
+import { DemoCTA } from "@/components/shared/DemoCTA";
 
-// SEO Metadata — targeting sales team training
+// SEO Metadata — corporate education / L&D
 export const metadata: Metadata = {
-  title: "Treinamento de Equipes de Vendas com Flashcards | Sappie para Empresas",
+  title: "Educação Corporativa com Microlearning Gamificado | Sappie para Empresas",
   description:
-    "Sua equipe de vendas esquece o treinamento em dias? A Sappie usa repetição espaçada para garantir que seus vendedores dominem o produto, fechem mais negócios e reduzam o tempo de onboarding.",
+    "Sua equipe esquece o treinamento em dias? A Sappie usa repetição espaçada para garantir a retenção de onboarding, treinamento de produto, compliance e capacitação comercial — em minutos por dia, pelo celular.",
   keywords: [
+    "educação corporativa",
+    "treinamento corporativo",
+    "plataforma treinamento corporativo",
+    "microlearning empresas",
+    "onboarding de colaboradores",
+    "treinamento de compliance",
     "treinamento equipe de vendas",
     "capacitação comercial",
-    "onboarding vendedores",
-    "treinamento de produto vendas",
-    "microlearning comercial",
-    "retenção de conhecimento vendas",
-    "plataforma treinamento corporativo",
+    "retenção de conhecimento",
     "repetição espaçada empresas",
     "flashcards corporativos",
-    "treinamento vendas online",
-    "educação corporativa",
-    "LMS vendas",
+    "LMS corporativo",
   ],
   authors: [{ name: "Sappie" }],
   openGraph: {
-    title: "Sua equipe de vendas esquece o treinamento? | Sappie para Empresas",
+    title: "Sua equipe esquece o treinamento? | Sappie para Empresas",
     description:
-      "Repetição espaçada científica para equipes comerciais. +40% conversão. Onboarding 3x mais rápido.",
+      "Microlearning gamificado com repetição espaçada para educação corporativa. Mais de 90% de retenção, 90% menos horas de sala.",
     type: "website",
     locale: "pt_BR",
     siteName: "Sappie",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Treinamento de Vendas que Funciona | Sappie",
+    title: "Educação Corporativa que Funciona | Sappie",
     description:
-      "Flashcards inteligentes com repetição espaçada para equipes comerciais.",
+      "Microlearning gamificado com repetição espaçada para treinamentos que a equipe realmente lembra.",
   },
   alternates: { canonical: "/empresas" },
   robots: {
@@ -72,9 +73,9 @@ const structuredData = {
     {
       "@type": "WebPage",
       "@id": "/empresas",
-      name: "Treinamento de Equipes de Vendas com Flashcards Inteligentes",
+      name: "Educação Corporativa com Microlearning Gamificado",
       description:
-        "Plataforma de flashcards com repetição espaçada para treinamento e capacitação de equipes de vendas",
+        "Plataforma de flashcards com repetição espaçada para onboarding, treinamento de produto, compliance e capacitação de equipes",
       inLanguage: "pt-BR",
     },
     {
@@ -101,7 +102,7 @@ const structuredData = {
           name: "Como é o modelo de preços?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Trabalhamos com planos por número de usuários, com valores acessíveis que cabem no orçamento de treinamento. Entre em contato pelo WhatsApp para receber uma proposta personalizada.",
+            text: "Trabalhamos com planos por número de usuários, com valores acessíveis que cabem no orçamento de treinamento. Agende uma demonstração para receber uma proposta personalizada.",
           },
         },
         {
@@ -132,7 +133,7 @@ const structuredData = {
     },
     {
       "@type": "Service",
-      serviceType: "Sales Team Training Platform",
+      serviceType: "Corporate Training Platform",
       provider: {
         "@type": "Organization",
         name: "Sappie",
@@ -140,53 +141,20 @@ const structuredData = {
       areaServed: "BR",
       audience: {
         "@type": "BusinessAudience",
-        audienceType: "Sales Directors, VP of Sales, CEO, HR Managers",
+        audienceType: "L&D Managers, HR Directors, Sales Directors, CEOs",
       },
     },
     {
       "@type": "Product",
-      name: "Sappie - Treinamento de Equipes de Vendas",
+      name: "Sappie - Educação Corporativa",
       description:
-        "Plataforma de treinamento de equipes de vendas com flashcards inteligentes e repetição espaçada",
-      category: "Sales Training Platform",
+        "Plataforma de educação corporativa com flashcards inteligentes e repetição espaçada",
+      category: "Corporate Training Platform",
       offers: {
         "@type": "Offer",
         availability: "https://schema.org/InStock",
         priceCurrency: "BRL",
       },
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Ricardo Mendes" },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: "5",
-        bestRating: "5",
-      },
-      reviewBody:
-        "Em 3 meses, nossa equipe de 40 vendedores aumentou a taxa de conversão em 35%.",
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Camila Ferreira" },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: "5",
-        bestRating: "5",
-      },
-      reviewBody:
-        "O onboarding que levava 3 meses agora leva 4 semanas. Novos vendedores chegam ao campo muito mais preparados.",
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Fernando Almeida" },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: "5",
-        bestRating: "5",
-      },
-      reviewBody:
-        "Finalmente conseguimos medir o conhecimento do time de forma objetiva.",
     },
   ],
 };
@@ -194,7 +162,7 @@ const structuredData = {
 // ─── Static Data ────────────────────────────────────────────────────────────
 
 const WHATSAPP_URL =
-  "https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20equipes%20de%20vendas";
+  "https://wa.me/5511935031749?text=Quero%20conhecer%20a%20solu%C3%A7%C3%A3o%20da%20Sappie%20para%20minha%20empresa";
 
 const steps = [
   {
@@ -208,7 +176,7 @@ const steps = [
     number: "02",
     title: "Criação dos Flashcards",
     description:
-      "Nossa equipe transforma seus materiais de produto, processos e scripts em flashcards otimizados para retenção.",
+      "Nossa equipe transforma seus materiais de treinamento, manuais, processos e scripts em flashcards otimizados para retenção.",
     duration: "3-5 dias",
   },
   {
@@ -241,17 +209,17 @@ const faqs = [
   {
     question: "Como é o modelo de preços?",
     answer:
-      "Trabalhamos com planos por número de usuários, com valores acessíveis que cabem no orçamento de treinamento. Entre em contato pelo WhatsApp para receber uma proposta personalizada para o tamanho da sua equipe.",
+      "Trabalhamos com planos por número de usuários, com valores acessíveis que cabem no orçamento de treinamento. Agende uma demonstração para receber uma proposta personalizada para o tamanho da sua equipe.",
   },
   {
     question: "Vocês ajudam a criar o conteúdo dos flashcards?",
     answer:
-      "Sim! Nossa equipe especializada transforma seus materiais de treinamento, manuais de produto e scripts de vendas em flashcards otimizados. Você não precisa criar nada do zero.",
+      "Sim! Nossa equipe especializada transforma seus materiais de treinamento, manuais, processos e scripts em flashcards otimizados. Você não precisa criar nada do zero.",
   },
   {
     question: "Como acompanho o progresso da equipe?",
     answer:
-      "Você tem acesso a um dashboard com métricas detalhadas: taxa de conclusão, desempenho por vendedor, lacunas de conhecimento por tema, e evolução ao longo do tempo. Todos os dados podem ser exportados.",
+      "Você tem acesso a um dashboard com métricas detalhadas: taxa de conclusão, desempenho por colaborador, lacunas de conhecimento por tema, e evolução ao longo do tempo. Todos os dados podem ser exportados.",
   },
   {
     question: "Funciona para equipes remotas ou distribuídas?",
@@ -279,7 +247,7 @@ const Empresas = () => {
             <div className="text-center animate-fade-in">
               <Badge className="mb-6 bg-primary/10 text-primary border-0 px-4 py-2">
                 <Briefcase className="w-4 h-4 mr-2" aria-hidden="true" />
-                Solução para Treinamentos
+                Educação Corporativa
               </Badge>
 
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl mb-6">
@@ -288,15 +256,17 @@ const Empresas = () => {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                A
+                Onboarding, treinamento de produto, compliance e capacitação comercial: a
                 Sappie usa ciência da aprendizagem para garantir que seus
                 colaboradores saibam o que realmente importa.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <DemoCTA size="lg" showArrow className="text-lg px-8 py-6" />
                 <Button
                   size="lg"
-                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
+                  variant="outline"
+                  className="text-lg px-8 py-6"
                   asChild
                 >
                   <a
@@ -305,7 +275,7 @@ const Empresas = () => {
                     rel="noopener noreferrer"
                   >
                     <MessageCircle className="mr-2 h-5 w-5" />
-                    FALE COM UM SÓCIO
+                    Falar com um sócio
                   </a>
                 </Button>
               </div>
@@ -329,7 +299,7 @@ const Empresas = () => {
                 A Sappie aplica{" "}
                 <strong className="text-foreground">repetição espaçada</strong>{" "}
                 — a técnica de memorização mais eficaz comprovada pela
-                neurociência — ao treinamento comercial. Em vez de treinamentos
+                neurociência — ao treinamento corporativo. Em vez de treinamentos
                 longos que sua equipe esquece, entregamos microlearning diário
                 que fixa o conhecimento na memória de longo prazo.
               </p>
@@ -497,14 +467,16 @@ const Empresas = () => {
                 <span className="primary-text">resultados</span>?
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Converse com um sócio e descubra como a Sappie pode
-                aumentar a performance da sua equipe de vendas em semanas, não
+                Agende uma demonstração e descubra como a Sappie pode
+                aumentar a performance da sua equipe em semanas, não
                 meses.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <DemoCTA size="lg" showArrow className="text-lg px-8 py-6 glow-effect" />
                 <Button
                   size="lg"
-                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
+                  variant="outline"
+                  className="text-lg px-8 py-6"
                   asChild
                 >
                   <a
@@ -513,7 +485,7 @@ const Empresas = () => {
                     rel="noopener noreferrer"
                   >
                     <MessageCircle className="mr-2 h-5 w-5" />
-                    FALE COM UM SÓCIO AGORA
+                    Falar com um sócio
                   </a>
                 </Button>
               </div>

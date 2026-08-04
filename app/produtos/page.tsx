@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 // Static product data
-export const products = [
+const products = [
   {
     id: 1,
     title: "Farmácia",

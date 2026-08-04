@@ -5,28 +5,23 @@ import sappieLogo from "@/assets/sappie-logo.svg";
 
 // Navigation data (static, SEO-friendly)
 export const navigationData = {
-  // Split menu items for correct positioning of dropdowns
-  menuBeforeSolutions: [
-    { label: "Início", href: "#hero", id: "hero" },
-    { label: "Ciência", href: "#ciencia", id: "ciencia" },
-    { label: "Aplicativo", href: "#app", id: "app" },
+  mainLinks: [
+    { label: "Empresas", href: "/empresas" },
+    { label: "Instituições de Ensino", href: "/ensino" },
   ],
-  menuAfterSolutions: [
-    { label: "Parceiros", href: "#parceiros", id: "parceiros" },
-    { label: "Depoimentos", href: "#depoimentos", id: "depoimentos" },
-    { label: "Contato", href: "#cta", id: "cta" },
+  plataforma: [
+    { label: "Visão geral", href: "/plataforma", description: "Conheça a plataforma Sappie" },
+    { label: "App do Aluno", href: "/plataforma#app", description: "Microlearning gamificado no celular" },
+    { label: "Estúdio de Conteúdo", href: "/plataforma#criador", description: "Transforme materiais em flashcards" },
+    { label: "Gamificação", href: "/plataforma#gamificacao", description: "Engajamento com rankings e conquistas" },
+    { label: "Acompanhamento", href: "/plataforma#analytics", description: "Dados de progresso e retenção" },
   ],
-  solutions: [
-    { label: "Para Alunos", href: "#solucoes-alunos", fullPath: "/#solucoes-alunos" },
-    { label: "Para Criadores", href: "#solucoes-criadores", fullPath: "/#solucoes-criadores" },
-    { label: "Para Empresas", href: "#solucoes-empresas", fullPath: "/#solucoes-empresas" },
-    { label: "Para Instituições de Ensino", href: "#solucoes-instituicoes", fullPath: "/#solucoes-instituicoes" },
-  ],
-  platform: [
-    { label: "Aluno", href: "#app", isExternal: false },
-    { label: "Criador", href: "https://creator.sappie.com.br/", isExternal: true },
-    { label: "Empresa", href: "https://creator.sappie.com.br/", isExternal: true },
-    { label: "Instituição", href: "https://creator.sappie.com.br/", isExternal: true },
+  afterPlataforma: [{ label: "Ciência", href: "/ciencia" }],
+  paraVoce: [
+    { label: "Para Alunos", href: "/alunos", isExternal: false },
+    { label: "Para Criadores", href: "/criadores", isExternal: false },
+    { label: "Loja de Flashcards", href: "/produtos", isExternal: false },
+    { label: "Acessar a plataforma", href: "https://creator.sappie.com.br/", isExternal: true },
   ],
 } as const;
 
@@ -51,16 +46,21 @@ export const Navbar = () => {
                 aria-label="Sappie - Página inicial"
                 itemProp="url"
               >
-                <Image 
-                  src={sappieLogo} 
-                  alt="Sappie - Plataforma de Flashcards Inteligentes" 
-                  className="h-8 md:h-10 w-auto" 
+                <Image
+                  src={sappieLogo}
+                  alt="Sappie - Plataforma de Microlearning Gamificado"
+                  className="h-8 md:h-10 w-auto"
                   priority
                 />
               </Link>
-              
+
               <div className="hidden md:flex items-center gap-8">
-                {[...navigationData.menuBeforeSolutions, ...navigationData.menuAfterSolutions].map((item) => (
+                {[
+                  ...navigationData.mainLinks,
+                  { label: "Plataforma", href: "/plataforma" },
+                  ...navigationData.afterPlataforma,
+                  { label: "Agendar demonstração", href: "/demo" },
+                ].map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -74,7 +74,7 @@ export const Navbar = () => {
             </div>
           </div>
         </noscript>
-        
+
         {/* Client-side interactive navbar */}
         <NavbarClient navigationData={navigationData} />
       </nav>
@@ -83,42 +83,45 @@ export const Navbar = () => {
       <div className="sr-only" aria-hidden="true">
         <h2>Navegação do site</h2>
         <ul>
-          {[...navigationData.menuBeforeSolutions, ...navigationData.menuAfterSolutions].map((item) => (
+          {[...navigationData.mainLinks, ...navigationData.afterPlataforma].map((item) => (
             <li key={item.href}>
               <a href={item.href}>{item.label}</a>
             </li>
           ))}
           <li>
-            <span>Soluções:</span>
+            <span>Plataforma:</span>
             <ul>
-              {navigationData.solutions.map((solution) => (
-                <li key={solution.href}>
-                  <a href={solution.fullPath}>{solution.label}</a>
+              {navigationData.plataforma.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
                 </li>
               ))}
             </ul>
           </li>
           <li>
-            <span>Plataforma:</span>
+            <span>Para você:</span>
             <ul>
-              {navigationData.platform.map((platform) => (
-                <li key={platform.label}>
-                  <a 
-                    href={platform.href}
-                    {...(platform.isExternal && { 
-                      target: "_blank", 
-                      rel: "noopener noreferrer" 
+              {navigationData.paraVoce.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    {...(item.isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
                     })}
                   >
-                    {platform.label}
+                    {item.label}
                   </a>
                 </li>
               ))}
             </ul>
           </li>
+          <li>
+            <a href="/demo">Agendar demonstração</a>
+          </li>
         </ul>
       </div>
-      
+
       <div className="h-16 md:h-20" aria-hidden="true" />
     </>
   );
